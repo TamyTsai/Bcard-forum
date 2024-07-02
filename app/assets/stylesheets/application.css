@@ -11,5 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ * 會把所有引進來後再編譯
+ *= require bulma/bulma.css
+ *前面的vendor/assets/stylesheets都省略
  *= require_self
  */
