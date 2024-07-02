@@ -16,3 +16,16 @@
  *前面的vendor/assets/stylesheets都省略
  *= require_self
  */
+
+/* 全站都會用到的css */
+
+.medium-bule-bgc {
+   background-color: #006AA6;
+}
+
+.light-blue-bgc {
+   background-color: #53ACD8;
+}
+
+ 
+
