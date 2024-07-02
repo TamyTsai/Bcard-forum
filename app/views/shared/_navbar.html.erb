@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand medium-bule-bgc">
+    <div class="navbar-brand bgc-medium-blue">
     <%= link_to root_path, class: "navbar-item" do%> <!-- logo連結連回首頁 -->
-      <h1 class="title text-white mr-5">Bcard</h1>
+      <h1 class="text-2xl font-mono font-bold text-white mr-5">Bcard</h1>
     <% end %>
   
       <!-- 漢堡選單 -->
@@ -13,14 +13,14 @@
       </a>
     </div>
   
-    <div id="navbarBasicExample" class="navbar-menu medium-bule-bgc">
+    <div id="navbarBasicExample" class="navbar-menu bgc-medium-blue">
       <div class="navbar-start">
 
         <div class="control">
             <input class="input mt-3 w-96" type="text" placeholder="搜尋 熱門文章">
         </div>
         <div class="control">
-            <button class="button is-medium mt-3 border-1 border-blue-800 text-white medium-bule-bgc ">
+            <button class="button is-medium mt-3 border-1 border-blue-800 text-white bgc-medium-blue ">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </div>
@@ -41,12 +41,12 @@
               <% end %>
               <!-- 個人資料的子頁面再放修改個人資料按鈕 edit_user_registration -->
 
-              <%=link_to "登出", destroy_user_session_path, class: 'button is-info mt-1 text-white light-blue-bgc', data: {turbo_method: :delete, turbo_confirm: "確定登出？"} %>
+              <%=link_to "登出", destroy_user_session_path, class: 'button is-info mt-1 text-white bgc-light-blue', data: {turbo_method: :delete, turbo_confirm: "確定登出？"} %>
 
             <% else %> <!-- 沒登入的話 -->
 
-              <%=link_to "註冊", new_user_registration_path, class: 'button is-info mt-1 text-white light-blue-bgc' %>
-              <%=link_to "登入", new_user_session_path, class: 'button is-info mt-1 text-white light-blue-bgc' %>
+              <%=link_to "註冊", new_user_registration_path, class: 'button is-info mt-1 text-white bgc-light-blue' %>
+              <%=link_to "登入", new_user_session_path, class: 'button is-info mt-1 text-white bgc-light-blue' %>
               
             <% end %>
           </div>

@@ -17,8 +17,13 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-
-    <%= yield %>
+    <!-- 全站套用深藍色底 -->
+    <div class="bgc-dark-blue h-screen">
+      <%= render 'shared/navbar' %>
+      <!-- 左右留空隙 -->
+      <div class="container"> 
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

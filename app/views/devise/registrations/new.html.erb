@@ -1,0 +1,46 @@
+
+
+<div class="div-all-center">
+  <section class="columns mt-20">
+    <!-- 左半 -->
+    <secttion class="column py-56 mx-6">
+      <p class="text-white text-3xl font-bold text-center mb-1">年輕人都在 Dcard 上討論</p>
+      <p class="text-gray-400 text-center text-2xl">不想錯過任何有趣的話題嗎？<br>趕快加入我們吧!</p>
+    </secttion>
+    <!-- 右半 -->
+    <secttion class="column">
+      <div class="bg-white w-96 rounded-xl p-10">
+        <h2 class="text-3xl font-semibold text-center mb-3">註冊</h2>
+  
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+  
+          <div class="field justify-center items-center">
+            <%= f.label :email, '常用信箱', class:'font-bold' %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input mt-2 mb-3' %>
+          </div>
+  
+          <div class="field">
+            <%= f.label :password, '密碼', class:'font-bold' %>
+            <% if @minimum_password_length %>
+              <span class="font-bold">(至少<%= @minimum_password_length %>個字元)</span>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class:'input mt-2 mb-3' %>
+          </div>
+  
+          <div class="field">
+            <%= f.label :password_confirmation, '確認密碼', class:'font-bold' %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'input mt-2 mb-3' %>
+          </div>
+  
+          <div class="actions">
+            <%= f.submit "註冊", class:'button w-full bgc-medium-blue text-white' %>
+          </div>
+        <% end %>
+  
+        <!-- <%= render "devise/shared/links" %> -->
+      </div>
+    </secttion>
+  </section>
+</div>
+

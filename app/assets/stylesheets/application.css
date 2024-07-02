@@ -19,13 +19,25 @@
 
 /* 全站都會用到的css */
 
-.medium-bule-bgc {
+.bgc-light-blue {
+   background-color: #53ACD8;
+}
+
+.bgc-medium-blue {
    background-color: #006AA6;
 }
 
-.light-blue-bgc {
-   background-color: #53ACD8;
+.bgc-dark-blue {
+   background-color: #00324E;
 }
+
+.div-all-center {
+   display: flex;
+   justify-content: center; /* 水平置中 */
+   align-items: center; /* 垂直置中 */
+}
+
+
 
  
 
