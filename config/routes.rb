@@ -10,32 +10,34 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#index"
 
-#   # 文章
-#   resources :articles do
-#     resources :comments, only: [:create] # 每篇文章下會有很多留言，直接把留言路徑資源做在文章下
-#     # 只會用到create action的相關路徑（只需要新增留言）
-#     # rails routes | grep comments
-#     # 只長出  article_comments   POST   /articles/:article_id/comments(.:format)      comments#create
-#   end
+  resources :posts
+
+  # 文章
+  # resources :posts do
+  #   resources :comments, only: [:create] # 每篇文章下會有很多留言，直接把留言路徑資源做在文章下
+  #   # 只會用到create action的相關路徑（只需要新增留言）
+  #   # rails routes | grep comments
+  #   # 只長出  article_comments   POST   /articles/:article_id/comments(.:format)      comments#create
+  # end
  
-#   # 個人資訊：/my
-#   namespace :my do
-#     # 個人資料首頁：我的收藏文章列表
-#     root 'collections#index' # 本namespace的首頁設定在 我的收藏
+  # 個人資訊：/my
+  # namespace :my do
+  #   # 個人資料首頁：我的收藏文章列表
+  #   root 'collections#index' # 本namespace的首頁設定在 我的收藏
 
-#     # 我的收藏：/my/collections
-#     get '/collections', to: 'collections#index' # 我的收藏文章列表
+  #   # 我的收藏：/my/collections
+  #   get '/collections', to: 'collections#index' # 我的收藏文章列表
    
-#     # 我追蹤的卡稱：/my/following
-#     get '/following', to: 'followings#index'  # 我追蹤的卡稱列表
+  #   # 我追蹤的卡稱：/my/following
+  #   get '/following', to: 'followings#index'  # 我追蹤的卡稱列表
 
-#     # 我的文章（所有文章）：/my/posts
-#     get '/posts', to: 'posts#index' # 我的所有文章列表
+  #   # 我的文章（所有文章）：/my/posts
+  #   # get '/posts', to: 'posts#index' # 我的所有文章列表
 
-#     # 編輯我的個人資料：/users/edit（devise預設）
-#     # edit_user_registration GET    /users/edit(.:format)    devise/registrations#edit  編輯帳號資料（編輯帳號資料表單頁面）
+  #   # 編輯我的個人資料：/users/edit（devise預設）
+  #   # edit_user_registration GET    /users/edit(.:format)    devise/registrations#edit  編輯帳號資料（編輯帳號資料表單頁面）
 
-#   end
+  # end
   
 #   # 單一用戶的已發佈文章列表：/@用戶ID（username）
 #   get '@:username', to: 'pages#user', as: 'user_page'

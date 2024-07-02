@@ -1,45 +1,47 @@
-<div class="div-all-center">
-  <section class="columns mt-20">
-    <!-- 左半 -->
-    <secttion class="column py-56 mx-6">
-      <p class="text-white text-3xl font-bold text-center mb-1">年輕人都在 Dcard 上討論</p>
-      <p class="text-gray-400 text-center text-2xl">不想錯過任何有趣的話題嗎？<br>趕快加入我們吧!</p>
-    </secttion>
-    <!-- 右半 -->
-    <secttion class="column">
-      <div class="bg-white w-96 rounded-xl p-10">
-        <h2 class="text-3xl font-semibold text-center mb-3">登入</h2>
-  
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-          <div class="field justify-center items-center">
-            <%= f.label :email, '常用信箱', class:'font-bold' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input mt-2 mb-3' %>
-          </div>
-  
-          <div class="field">
-            <%= f.label :password, '密碼', class:'font-bold' %><br />
-            <%= f.password_field :password, autocomplete: "current-password", class:'input mt-2 mb-3' %>
-          </div>
-
-          <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, '記住我' %>
+<div class="bgc-dark-blue h-screen">
+  <div class="div-all-center">
+    <section class="columns mt-20">
+      <!-- 左半 -->
+      <secttion class="column py-56 mx-6">
+        <p class="text-white text-3xl font-bold text-center mb-1">年輕人都在 Dcard 上討論</p>
+        <p class="text-gray-400 text-center text-2xl">不想錯過任何有趣的話題嗎？<br>趕快加入我們吧!</p>
+      </secttion>
+      <!-- 右半 -->
+      <secttion class="column">
+        <div class="bg-white w-96 rounded-xl p-10">
+          <h2 class="text-3xl font-semibold text-center mb-3">登入</h2>
+    
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+            <div class="field justify-center items-center">
+              <%= f.label :email, '常用信箱', class:'font-bold' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input mt-2 mb-3' %>
             </div>
-          <% end %>
-          
-          <div class="actions">
-            <%= f.submit "登入", class:'button w-full bgc-medium-blue text-white mb-2'  %>
-          </div>
-          <% end %>
-          
-          <!-- <%= render "devise/shared/links" %> -->
-          <%= link_to new_password_path(resource_name), class:'text-sky-500' do %>
-            <p class="text-center">忘記密碼</p>
-          <% end %>
-      </div>
-    </secttion>
-  </section>
+    
+            <div class="field">
+              <%= f.label :password, '密碼', class:'font-bold' %><br />
+              <%= f.password_field :password, autocomplete: "current-password", class:'input mt-2 mb-3' %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, '記住我' %>
+              </div>
+            <% end %>
+            
+            <div class="actions">
+              <%= f.submit "登入", class:'button w-full bgc-medium-blue text-white mb-2'  %>
+            </div>
+            <% end %>
+            
+            <!-- <%= render "devise/shared/links" %> -->
+            <%= link_to new_password_path(resource_name), class:'text-sky-500' do %>
+              <p class="text-center">忘記密碼</p>
+            <% end %>
+        </div>
+      </secttion>
+    </section>
+  </div>
 </div>
 

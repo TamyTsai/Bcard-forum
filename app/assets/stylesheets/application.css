@@ -37,6 +37,19 @@
    align-items: center; /* 垂直置中 */
 }
 
+/* nav {
+   max-width: 1370px;
+} */
+
+/* #nav {
+   display: flex;
+   justify-content: center;
+} */
+
+.avatar {
+   border-radius: 50%;
+}
+
 
 
  
