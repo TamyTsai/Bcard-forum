@@ -29,12 +29,26 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-info mt-1 text-white light-blue-bgc ">
-              註冊
-            </a>
-            <a class="button is-info mt-1 text-white light-blue-bgc ">
-              登入
-            </a>
+            <% if user_signed_in? %> <!-- 有登入的話 -->
+              <!-- 新增文章 筆（點了會進 新增文章表單頁面） -->
+              <%=link_to "#" do %>
+                <i class="fa-solid fa-pen text-white text-xl mr-3"></i>
+              <% end %>
+              
+              <!-- 個人資訊小人(點了會進個人資料首頁 我的收藏文章) -->
+              <%=link_to "#" do %>
+                <i class="fa-solid fa-user text-white text-xl mr-3"></i>
+              <% end %>
+              <!-- 個人資料的子頁面再放修改個人資料按鈕 edit_user_registration -->
+
+              <%=link_to "登出", destroy_user_session_path, class: 'button is-info mt-1 text-white light-blue-bgc', data: {turbo_method: :delete, turbo_confirm: "確定登出？"} %>
+
+            <% else %> <!-- 沒登入的話 -->
+
+              <%=link_to "註冊", new_user_registration_path, class: 'button is-info mt-1 text-white light-blue-bgc' %>
+              <%=link_to "登入", new_user_session_path, class: 'button is-info mt-1 text-white light-blue-bgc' %>
+              
+            <% end %>
           </div>
         </div>
       </div>
