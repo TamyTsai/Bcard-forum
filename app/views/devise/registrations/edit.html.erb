@@ -1,11 +1,11 @@
 
 
-<div class="bgc-dark-blue h-screen">
+<div class="bgc-dark-blue min-h-screen">
   <div class="max-w-5xl m-auto">
       <section class="columns pt-4">
           <%= render 'shared/profile-left' %>
           <section class="column is-9">
-              <div class="bg-neutral-100 rounded-2xl px-12 pt-4 pb-12">
+              <div class="bg-neutral-100 rounded-2xl px-12 pt-4 pb-12 mb-5">
                 <h1 class="text-2xl font-semibold">設定</h1>
                 <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
 
@@ -22,24 +22,27 @@
 
                   <!-- 頭貼檔案上傳 -->
 
-                  <!-- <div class="field">
-                    f.label :cardname, '卡稱', class:'text-xl font-bold'
-                    f.email_field :cardname, autofocus: true, class:'input mt-2.5'
+                  <div class="field">
+                    <%= f.label :cardname, '卡稱', class:'text-xl font-bold' %>
+                    <%= f.text_field :cardname, autofocus: true, class:'input mt-2.5' %>
                   </div>
 
                   <div class="field">
-                    f.label :username, 'ID', class:'text-xl font-bold'
-                    f.email_field :cardname, autofocus: true, class:'input mt-2.5'
-                  </div> -->
+                    <%= f.label :username, 'ID', class:'text-xl font-bold' %><span>（不可與他人重複）</span>
+                    <%= f.text_field :username, class:'input mt-2.5' %>
+                  </div>
 
                   <div class="field">
                     <%= f.label :email, '常用信箱', class:'text-xl font-bold' %>
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input mt-2.5' %>
+                    <%= f.email_field :email, autocomplete: "email", class:'input mt-2.5' %>
                   </div>
                 
                   <hr>
 
-                  <!-- 個人簡介 -->
+                  <div class="field">
+                    <%= f.label :intro, '個人簡介', class:'text-xl font-bold' %>
+                    <%= f.text_area :intro, rows: 5, class:'textarea mt-2.5' %>
+                  </div>
 
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -50,7 +53,7 @@
                     <%= f.password_field :password, autocomplete: "new-password", class:'input mt-2.5' %>
                     <% if @minimum_password_length %>
                       <br />
-                      <p>至少<%= @minimum_password_length %>個字元</p>
+                      <p class="help">至少<%= @minimum_password_length %>個字元</p>
                     <% end %>
                   </div>
                 

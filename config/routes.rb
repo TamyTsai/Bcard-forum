@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # devise_for :users #devise幫你長出來的 會自動對應該對應的controller
+
+  # 有自己生成controller（rails g devise:controllers 資料夾名稱），客製化的部分要來此設定
+  devise_for :users, controllers: {
+    registrations: 'users/registrations' # 有關會員註冊（註冊及編輯資料）的controller 請使用users資料夾下的registrations_controlle.rb
+  }
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
