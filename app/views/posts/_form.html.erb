@@ -23,8 +23,10 @@
             <%= form.text_field :title, placeholder: "標題", class: 'input my-4 text-2xl' %></br>
             <%= form.text_area :content, placeholder: "敘述", rows: '20', cols: '10', class: 'textarea' %></br>
             <div class="text-right">
-                <%= form.submit '儲存為草稿', class: 'button bg-zinc-200'%>
-                <%= form.submit '發佈', class: 'button bgc-light-blue text-white'%>
+                <%= form.submit '儲存為草稿', name: 'save_as_draft', class: 'button bg-zinc-200'%>
+                <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
+                <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
+                <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white'%>
             </div>
     <% end %>
 </div>

@@ -24,9 +24,16 @@ class PostsController < ApplicationController
 
     def create # 送出建立文章表單
         @post = current_user.posts.new(post_params)
+        @post.status = 'published' if params[:publish] 
+        # params hash中有:publish這個key的話（若使用者按發佈按鈕，就會讓params hash中有:publish這個key） 就將posts資料表status欄位值指定為published
+        # 文章status欄位預設值為draft，所以不用寫該情況
 
         if @post.save
-            redirect_to posts_path, notice: '文章新增成功'
+            if params[:publish] # 若按下 發佈按鈕
+                redirect_to posts_path, notice: '文章發佈成功'
+            else # 若按下 儲存為草稿按鈕
+                redirect_to edit_post_path(@post), notice: '文章已儲存為草稿'
+            end 
         else
             render :new
         end
