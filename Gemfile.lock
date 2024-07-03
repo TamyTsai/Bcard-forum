@@ -79,6 +79,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    babosa (2.0.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
@@ -110,6 +111,8 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.13.0)
+    friendly_id (5.5.1)
+      activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -259,10 +262,12 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (~> 5.5)
+  babosa (~> 2.0)
   bootsnap
   capybara
   debug
   devise (~> 4.9, >= 4.9.4)
+  friendly_id (~> 5.5, >= 5.5.1)
   jbuilder
   jsbundling-rails
   pg (~> 1.1)

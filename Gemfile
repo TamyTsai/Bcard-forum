@@ -47,6 +47,12 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 # aasm 有限狀態機
 gem 'aasm', '~> 5.5'
 
+# friendly id
+gem 'friendly_id', '~> 5.5', '>= 5.5.1'
+
+# babosa 處理friendly id 的編碼
+gem 'babosa', '~> 2.0'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

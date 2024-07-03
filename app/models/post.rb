@@ -4,6 +4,11 @@ class Post < ApplicationRecord
 
   include AASM
 
+  extend FriendlyId
+  # friendly_id :要被當作slug用的欄位名稱, use: :slugged
+  friendly_id :slug_post , use: :slugged
+  
+
   belongs_to :user
 
   validates :title, presence: true
@@ -42,5 +47,21 @@ class Post < ApplicationRecord
   # 直接改欄位值的話...
   # 3.0.0 :002 > p1.update(status: 'publish')
   # (irb):2:in `<main>': direct assignment of AASM column has been disabled (see AASM configuration for this class) (AASM::NoDirectAssignmentError)
+
+  def normalize_friendly_id(input) # babosa方法 轉換文字編碼
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+  # http://localhost:3000/posts/文章中文標題/edit
+
+  private
+
+  def slug_post # 文章 給friendly id 用的slug
+    [
+      :title, # 文章標題
+      [:title, SecureRandom.hex[0, 8]] # 為同名文章產生 另外 的 網址編號
+    ]
+  end
+  # http://localhost:3000/posts/文章標題-b3e5f0e8/edit
+
 
 end
