@@ -1,0 +1,35 @@
+
+
+<div class="max-w-screen-md m-auto">
+    <!-- 水平置中另一個直覺思維就是使用 m-auto 自動調整左右 margin 而水平置中。但有個前提是 content 的 <div> 必須內縮與 content 同寬，m-auto 才有動態調整 margin 空間。 -->
+    <!-- w-fit：width 與 content 同寬，但仍維持其 block 特性，讓 margin: auto 有操作空間
+            m-auto：相當於同時設定 margin-left: auto、margin-right: auto，使之能自動調整左右 margin 而水平置中 -->
+    <article class="media mt-5">
+        <figure class="media-left">
+            <!-- 頭貼 -->
+            <img src="https://fakeimg.pl/50x50/" class="avatar">
+        </figure>
+    
+        <div class="media-content">
+            <div>自己卡稱</div>
+            <p class="text-gray-400 text-sm mb-1.5"><%= Time.current.strftime("%Y年%m月%d日 %I:%M") %></p>
+            <!-- https://khiav223577.github.io/blog/2018/03/03/Rails-%E4%B8%AD%E5%B8%B8%E6%90%9E%E6%B7%B7%E7%9A%84%E6%99%82%E5%8D%80%E5%95%8F%E9%A1%8C-Time-now-vs-Time-current/ -->
+            <!-- Time.now 使用當前機器作業系統的時區；Time.current 使用 Rails 中設定的時區 -->
+        </div>
+    </article>
+    
+    <!-- 建立表單之前 先建model -->
+    <%= form_for(post) do |form| %>
+            <%= form.text_field :title, placeholder: "標題", class: 'input my-4 text-2xl' %></br>
+            <%= form.text_area :content, placeholder: "敘述", rows: '20', cols: '10', class: 'textarea' %></br>
+            <div class="text-right">
+                <%= form.submit '儲存為草稿', class: 'button bg-zinc-200'%>
+                <%= form.submit '發佈', class: 'button bgc-light-blue text-white'%>
+            </div>
+    <% end %>
+</div>
+    
+    
+    
+    
+    

@@ -1,43 +1,88 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="bgc-dark-blue h-screen">
+  <div class="max-w-5xl m-auto">
+      <section class="columns pt-4">
+          <%= render 'shared/profile-left' %>
+          <section class="column is-9">
+              <div class="bg-neutral-100 rounded-2xl px-12 pt-4 pb-12">
+                <h1 class="text-2xl font-semibold">設定</h1>
+                <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
+
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+
+                  <!-- 頭貼 -->
+                  <div class="w-fit m-auto">
+                    <img src="https://fakeimg.pl/200x200/" class="avatar my-5">
+                  </div>
+
+                  <p class="text-2xl font-semibold text-center mb-2">自己卡稱</p>
+                  <p class="text-gray-500 text-xl font-semibold text-center mb-5">@自己ID</p>
+
+                  <!-- 頭貼檔案上傳 -->
+
+                  <!-- <div class="field">
+                    f.label :cardname, '卡稱', class:'text-xl font-bold'
+                    f.email_field :cardname, autofocus: true, class:'input mt-2.5'
+                  </div>
+
+                  <div class="field">
+                    f.label :username, 'ID', class:'text-xl font-bold'
+                    f.email_field :cardname, autofocus: true, class:'input mt-2.5'
+                  </div> -->
+
+                  <div class="field">
+                    <%= f.label :email, '常用信箱', class:'text-xl font-bold' %>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'input mt-2.5' %>
+                  </div>
+                
+                  <hr>
+
+                  <!-- 個人簡介 -->
+
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+                
+                  <div class="field mt-4">
+                    <%= f.label :password, '修改密碼', class:'text-xl font-bold' %> <span>（如果不更新密碼的話就留白）</span>
+                    <%= f.password_field :password, autocomplete: "new-password", class:'input mt-2.5' %>
+                    <% if @minimum_password_length %>
+                      <br />
+                      <p>至少<%= @minimum_password_length %>個字元</p>
+                    <% end %>
+                  </div>
+                
+                  <div class="field mt-4">
+                    <%= f.label :password_confirmation, '確認密碼', class:'text-xl font-bold' %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'input mt-2.5' %>
+                  </div>
+                
+                  <div class="field mt-4">
+                    <%= f.label :current_password, '請輸入目前密碼以驗證身份', class:'text-xl font-bold' %> 
+                    <%= f.password_field :current_password, autocomplete: "current-password", class:'input mt-2.5' %>
+                  </div>
+                
+                  <div class="actions text-right">
+                    <%= f.submit "更新資料", class: 'button bgc-light-blue text-white' %>
+                  </div>
+                <% end %>
+                
+                <span class="text-xl font-bold">刪除帳號</span>
+                <!-- <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div> -->
+                <%= button_to "刪除", registration_path(resource_name), data: { confirm: "是否確定刪除帳號？", turbo_confirm: "是否確定刪除帳號？" }, method: :delete, class:'button bg-zinc-200 mt-2.5' %>
+                
+                <!-- 返回上一頁 -->
+                <!-- <%= link_to "Back", :back %> -->
+              </div>
+          </section>
+      </section>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
