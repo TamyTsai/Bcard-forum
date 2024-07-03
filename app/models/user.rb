@@ -6,4 +6,10 @@ class User < ApplicationRecord
 
   has_many :posts
   # 每個用戶可有多篇文章
+
+  # 寫進資料庫前的後端驗證
+  validates :username, presence: :true, uniqueness: true
+  # 重複的話 頁面會跳：
+  # 1 error prohibited this user from being saved:
+  # Username has already been taken
 end

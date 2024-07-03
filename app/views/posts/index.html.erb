@@ -7,46 +7,53 @@
                     <h1 class="text-2xl font-semibold">我的文章</h1>
                     <hr class="border-gray-500">
                     <br>
-                    <% @posts.each do |post| %>
-                        <p class="text-gray-500 text-sm mb-1.5"><%= post.created_at.strftime("%Y年%m月%d日") %></p>
-                        <!-- https://blog.csdn.net/m0_67038390/article/details/124738401 -->
-                        <!--  link_to 顯示特定文章路徑  -->
-                            <div class="bg-white rounded-xl p-5 mb-5">
-                                <section class="columns mb-0">
-                                    <section class="column is-7">
-                                        <article class="media">
-                                            <figure class="media-left mr-2">
-                                                <img src="https://fakeimg.pl/25x25/" class="avatar">
-                                            </figure>
-                                            <div class="media-content">
-                                                <p class="text-gray-500"><%= current_user.cardname %></p>
-                                            </div>
-                                        </article>
+                    <% if current_user.posts.count == 0 %> <!-- 若當前登入的使用者 文章數量為0的話 -->
+                        <div class="text-center my-28">
+                            <p class="text-xl">尚無文章，趕快來寫一篇吧!</p>
+                            <%= link_to '建立文章', new_post_path, class:'button bgc-light-blue text-white mt-4' %>
+                        </div>
+                    <% else %> <!-- 若當前登入的使用者 文章數量不為0的話 -->
+                        <% @posts.each do |post| %>
+                            <p class="text-gray-500 text-sm mb-1.5"><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+                            <!-- https://blog.csdn.net/m0_67038390/article/details/124738401 -->
+                            <!--  link_to 顯示特定文章路徑  -->
+                                <div class="bg-white rounded-xl p-5 mb-5">
+                                    <section class="columns mb-0">
+                                        <section class="column is-7">
+                                            <article class="media">
+                                                <figure class="media-left mr-2">
+                                                    <img src="https://fakeimg.pl/25x25/" class="avatar">
+                                                </figure>
+                                                <div class="media-content">
+                                                    <p class="text-gray-500"><%= current_user.cardname %></p>
+                                                </div>
+                                            </article>
+                                        </section>
+                                        <section class="column is-5 text-right">
+                                            <%= link_to edit_post_path(post) do %>
+                                                <i class="fa-solid fa-pen mr-2 text-gray-400"></i>
+                                            <% end %>
+                                            <%= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: "確定刪除此文章？"}  do %>
+                                                <i class="fa-solid fa-trash-can text-gray-400"></i>
+                                            <% end %>
+                                        </section>
                                     </section>
-                                    <section class="column is-5 text-right">
-                                        <%= link_to edit_post_path(post) do %>
-                                            <i class="fa-solid fa-pen mr-2 text-gray-400"></i>
-                                        <% end %>
-                                        <%= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: "確定刪除此文章？"}  do %>
-                                            <i class="fa-solid fa-trash-can text-gray-400"></i>
-                                        <% end %>
-                                    </section>
-                                </section>
-                                <span class="text-xl font-bold"><%= post.title %></span>
-                                <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
-                                <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
-                                <p><%= post.content %></p>
-                                <!-- <p>最後編輯時間：<%= time_ago_in_words(post.updated_at) %>前</p> -->
-                                <div class="mt-2.5">
-                                    <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
-                                    <span class="text-gray-400 mr-4">0</span>
-                                    <i class="fa-solid fa-comment text-sky-500 mr-0.5"></i>
-                                    <span class="text-gray-400 mr-4">0</span>
-                                    <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
-                                    <span class="text-gray-400 mr-4">0</span>
+                                    <span class="text-xl font-bold"><%= post.title %></span>
+                                    <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
+                                    <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
+                                    <p><%= post.content %></p>
+                                    <!-- <p>最後編輯時間：<%= time_ago_in_words(post.updated_at) %>前</p> -->
+                                    <div class="mt-2.5">
+                                        <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
+                                        <span class="text-gray-400 mr-4">0</span>
+                                        <i class="fa-solid fa-comment text-sky-500 mr-0.5"></i>
+                                        <span class="text-gray-400 mr-4">0</span>
+                                        <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
+                                        <span class="text-gray-400 mr-4">0</span>
+                                    </div>
                                 </div>
-                            </div>
-                        <!-- end -->
+                            <!-- end -->
+                        <% end %>
                     <% end %>
                 </div>
     
