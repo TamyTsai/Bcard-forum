@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     # rails 7.1後only except裡面不能寫還沒寫的action，但可以改變設定：`config.action_controller.raise_on_missing_callback_actions` to `false`.
 
     def index
+        # @posts = current_user.posts.order(created_at: :desc).where(deleted_at: nil)
+        # 改用default scope
+
         @posts = current_user.posts.order(created_at: :desc)
     end
 
@@ -41,6 +44,8 @@ class PostsController < ApplicationController
     end
 
     def destroy
+        @post.destroy
+        redirect_to posts_path, notice: '文章已刪除'
     end
 
     private

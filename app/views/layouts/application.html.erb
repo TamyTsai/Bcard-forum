@@ -18,6 +18,7 @@
 
   <body>
     <%= render 'shared/navbar' %>
+    <%= render 'shared/flash' if notice %>
     <%= yield %>
   </body>
 </html>
