@@ -44,6 +44,9 @@ gem "bootsnap", require: false
 # devise 會員系統
 gem 'devise', '~> 4.9', '>= 4.9.4'
 
+# aasm 有限狀態機
+gem 'aasm', '~> 5.5'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

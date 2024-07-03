@@ -32,8 +32,8 @@
                                 </section>
                             </section>
                             <span class="text-xl font-bold"><%= post.title %></span>
-                            <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>
-                            <!--  if post.published? -->
+                            <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
+                            <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
                             <p><%= post.content %></p>
                             <!-- <p>最後編輯時間：<%= time_ago_in_words(post.updated_at) %>前</p> -->
                         </div>
