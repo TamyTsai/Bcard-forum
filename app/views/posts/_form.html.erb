@@ -1,4 +1,11 @@
-
+<% if post.errors.any? %> <!-- 如果有任何錯誤訊息 -->
+    <div class="notification is-danger mb-0 text-white">
+        <%= post.errors.full_messages.to_sentence %>
+        <!-- <%= post.errors.full_messages.each do |msg| %>
+            <%= msg %>
+        <% end %> -->
+    </div>
+<% end %>
 
 <div class="max-w-screen-md m-auto">
     <!-- 水平置中另一個直覺思維就是使用 m-auto 自動調整左右 margin 而水平置中。但有個前提是 content 的 <div> 必須內縮與 content 同寬，m-auto 才有動態調整 margin 空間。 -->
@@ -26,7 +33,8 @@
                 <%= form.submit '儲存為草稿', name: 'save_as_draft', class: 'button bg-zinc-200'%>
                 <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
                 <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
-                <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white'%>
+                <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white' if post.may_publish? %> <!-- 文章狀態為 可以發佈時（現為草稿） 才出現 發佈按鈕-->
+                <%= form.submit '下架文章', name: 'unpublish', class: 'button bgc-light-blue text-white' if post.may_unpublish? %> <!-- 文章狀態為 可以下架時（現為已發佈文章） 才出現 下架文章按鈕-->
             </div>
     <% end %>
 </div>

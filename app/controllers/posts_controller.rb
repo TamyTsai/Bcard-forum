@@ -29,13 +29,14 @@ class PostsController < ApplicationController
         # 文章status欄位預設值為draft，所以不用寫該情況
 
         if @post.save
+            # 新增文章頁面 發佈 與 儲存為草稿 按鈕 之流程判斷
             if params[:publish] # 若按下 發佈按鈕
                 redirect_to posts_path, notice: '文章發佈成功'
             else # 若按下 儲存為草稿按鈕
                 redirect_to edit_post_path(@post), notice: '文章已儲存為草稿'
             end 
         else
-            render :new
+            render :new, status: :unprocessable_entity # 否則，動作會重新顯示表單，方法是使用狀態碼 422 無法處理的實體 呈現 app/views/articles/new.html.erb。
         end
     end
 
@@ -43,11 +44,23 @@ class PostsController < ApplicationController
     end
     
     def update
-        if @post.update(post_params)
-            redirect_to posts_path, notice: '文章更新成功'
-        else
-            render :edit
+
+        if @post.update(post_params) # 若 成功更新文章
+            # 編輯文章頁面 發佈、下架文章 與 儲存為草稿 按鈕 之流程判斷
+            case
+            when params[:publish] # 若按下 發佈按鈕
+                @post.publish!
+                redirect_to posts_path, notice: '文章已發佈'
+            when params[:unpublish] # 若按下 文章下架按鈕
+                @post.unpublish!
+                redirect_to posts_path, notice: '文章已下架'
+            else # 若按下 儲存為草稿按鈕
+                redirect_to edit_post_path(@post), notice: '文章已儲存'
+            end
+        else # 寫入資料庫失敗
+            render :edit, status: :unprocessable_entity # 重新顯示表單（包含錯誤訊息），方法是使用狀態碼 422 無法處理的實體 呈現 app/views/articles/edit.html.erb
         end
+
     end
 
     def destroy
