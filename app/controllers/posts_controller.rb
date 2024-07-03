@@ -55,5 +55,11 @@ class PostsController < ApplicationController
 
     def find_post
         @post = current_user.posts.find(params[:id])
+        # find找不到時會噴exception ActiveRecord::RecordNotFound
+        # 可用bigin resue局部處理 或是提升到controller層級
+        # begin
+        #     @post = current_user.posts.find(params[:id])
+        # rescue => exception
+        # end
     end
 end
