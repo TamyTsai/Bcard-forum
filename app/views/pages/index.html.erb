@@ -1,4 +1,75 @@
 
+<!-- 首頁 -->
 <div class="bgc-dark-blue min-h-screen">
-    <h1 class="title text-white">首頁</h1>
+    <section class="columns max-w-7xl mx-auto">
+        <!-- 左側欄位 -->
+        <section class="column is-2 mt-4">
+            <!-- 最新文章（首頁） 按文章建立時間 排序 顯示文章-->
+            <div class="text-white text-lg mb-3">
+                <i class="fa-solid fa-newspaper mr-3"></i><span>最新文章</span>
+            </div>
+
+            <!-- 熱門文章 按文章愛心數 排序 顯示文章-->
+            <div class="text-white text-lg mb-3">
+                <i class="fa-solid fa-fire mr-3"></i><span>熱門文章</span>
+            </div>
+            <!-- 創作者排行榜 按被追蹤數 排序 使用者 -->
+            <div class="text-white text-lg mb-3">
+                <i class="fa-solid fa-award mr-3"></i><span>創作者排行榜</span>
+            </div>
+        </section>
+
+        <!-- 文章列表 -->
+        <section class="column is-7 bg-white my-4 rounded p-14">
+            <% if Post.where(status: 'published').count == 0 %> <!-- 若整個論壇 已發佈 文章數量 為0的話 -->
+                <div class="text-center my-28">
+                    <p class="text-xl">這個論壇還沒有任何人發佈文章，趕快來寫第一篇吧!</p>
+                    <%= link_to '建立文章', new_post_path, class:'button bgc-light-blue text-white mt-4' %>
+                </div>
+            <% else %> <!-- 若整個論壇 已發佈 文章數量 不為0的話 -->
+                <article class="media">
+                    <figure class="media-left mr-2">
+                        <!-- <img src="https://fakeimg.pl/25x25/" class="avatar"> -->
+                        <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                        <% if current_user.avatar.attached? %>
+                            <%= image_tag current_user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' %>
+                        <% else %>
+                            <i class="fa-solid fa-circle-user text-gray-500 text-2xl"></i>
+                        <% end %>
+                    </figure>
+                    <div class="media-content">
+                        <!-- ID -->
+                        <span class="text-gray-500">@<%= current_user.username %></span>
+                        <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
+                        <span>
+                            <% if current_user.cardname !=nil %>
+                                <span class="text-gray-500">・<%= current_user.cardname %></span>
+                            <% else %>
+                            <% end %>
+                        </span>
+                        <span class="text-gray-500">・22小時</span>
+                        <!-- <span>・ time_ago_in_words(post.created_at) </span> -->
+                    </div>
+                </article>
+                <span class="text-xl font-bold pb-6">文章標題</span>
+                <p>文章內文</p>
+                <div class="mt-2.5">
+                    <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
+                    <span class="text-gray-400 mr-4">0</span>
+                    <i class="fa-solid fa-comment text-sky-500 mr-0.5"></i>
+                    <span class="text-gray-400 mr-4">0</span>
+                    <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
+                    <span class="text-gray-400 mr-4">0</span>
+                </div>
+                <hr>
+            <% end %>
+        </section>
+
+        <!-- 廣告 -->
+        <section class="column is-3">
+            <img src="https://fakeimg.pl/300/?retina=1&text=廣告&font=noto" class="mb-2.5 mt-1">
+            <img src="https://fakeimg.pl/300/?retina=1&text=廣告&font=noto" class="mb-2.5">
+            <img src="https://fakeimg.pl/300x600/?retina=1&text=廣告&font=noto" class="mb-2.5">
+        </section>
+    </section>
 </div>
