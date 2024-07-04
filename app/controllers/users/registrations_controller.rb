@@ -50,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # 更新（編輯個人資料） 強參數
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:cardname, :username, :intro])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:cardname, :username, :intro, :avatar])
     # 要允許表單通過的欄位
   end
 

@@ -12,4 +12,7 @@ class User < ApplicationRecord
   # 重複的話 頁面會跳：
   # 1 error prohibited this user from being saved:
   # Username has already been taken
+
+  has_one_attached :avatar
+  # 每個使用者可以上傳一個頭貼
 end

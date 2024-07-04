@@ -14,13 +14,34 @@
 
                   <!-- 頭貼 -->
                   <div class="w-fit m-auto">
-                    <img src="https://fakeimg.pl/200x200/" class="avatar my-5">
+                    <!-- <img src="https://fakeimg.pl/200x200/" class="avatar my-5"> -->
+                    <div class="avatar my-5">
+                      <%= avatar(current_user) %>
+                    </div>
                   </div>
 
                   <p class="text-2xl font-semibold text-center mb-2"><%= current_user.cardname %></p>
                   <p class="text-gray-400 text-xl font-semibold text-center mb-5">@<%= current_user.username %></p>
 
-                  <!-- 頭貼檔案上傳 -->
+
+                  <div class="field">
+                    <%= f.label :avatar, '頭貼', class:'text-xl font-bold mr-3' %>
+                    <%= f.file_field :avatar, type: 'file' %>
+                  </div>
+
+                  <!-- <%= f.label :avatar, '頭貼', class:'text-xl font-bold' %>
+                  <div class="file is-normal is-boxed mt-2.5">
+                    <label class="file-label">
+                      <%= f.file_field :avatar, class:'file-input', type: 'file' %>
+                      <span class="file-cta"> 
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label"> 選擇檔案… </span>
+                      </span>
+                    </label>
+                  </div> -->
+
 
                   <div class="field">
                     <%= f.label :cardname, '卡稱', class:'text-xl font-bold' %>

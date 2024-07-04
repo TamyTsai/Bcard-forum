@@ -1,6 +1,7 @@
 <section class="column is-3">
     <div class="w-fit m-auto">
-        <img src="https://fakeimg.pl/100x100/" class="avatar my-5">
+        <!-- <img src="https://fakeimg.pl/100x100/" class="avatar my-5"> -->
+        <%= avatar(current_user, 100) %>
     </div>
     <p class="text-white text-2xl font-semibold text-center mb-5"><%= current_user.cardname %></p>
     <div class="w-fit mx-auto">
