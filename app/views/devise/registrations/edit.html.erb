@@ -16,7 +16,12 @@
                   <div class="w-fit m-auto">
                     <!-- <img src="https://fakeimg.pl/200x200/" class="avatar my-5"> -->
                     <div class="avatar my-5">
-                      <%= avatar(current_user) %>
+                      <!-- <%= avatar(current_user) %> -->
+                      <% if current_user.avatar.attached? %>
+                        <%= image_tag current_user.avatar.variant(resize_to_fill: [200, 200]), class: 'avatar' %>
+                      <% else %>
+                        <i class="fa-solid fa-circle-user text-gray-500 text-9xl"></i>
+                      <% end %>
                     </div>
                   </div>
 
@@ -49,12 +54,12 @@
                   </div>
 
                   <div class="field">
-                    <%= f.label :username, 'ID', class:'text-xl font-bold' %><span>（不可與他人重複）</span>
+                    <%= f.label :username, 'ID', class:'text-xl font-bold' %><span>（必填）（不可與他人重複）</span>
                     <%= f.text_field :username, class:'input mt-2.5' %>
                   </div>
 
                   <div class="field">
-                    <%= f.label :email, '常用信箱', class:'text-xl font-bold' %>
+                    <%= f.label :email, '常用信箱', class:'text-xl font-bold' %><span>（必填）</span>
                     <%= f.email_field :email, autocomplete: "email", class:'input mt-2.5' %>
                   </div>
                 

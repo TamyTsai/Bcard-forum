@@ -1,9 +1,17 @@
 <section class="column is-3">
     <div class="w-fit m-auto">
         <!-- <img src="https://fakeimg.pl/100x100/" class="avatar my-5"> -->
-        <%= avatar(current_user, 100) %>
+        <div class="avatar my-5">
+            <!-- <%= avatar(current_user, 100)%> -->
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize_to_fill: [100, 100]), class: 'avatar' %>
+            <% else %>
+                <i class="fa-solid fa-circle-user text-white text-8xl"></i>
+            <% end %>
+        </div>
     </div>
-    <p class="text-white text-2xl font-semibold text-center mb-5"><%= current_user.cardname %></p>
+    <p class="text-white text-2xl font-semibold text-center mb-1"><%= current_user.cardname %></p>
+    <p class="text-gray-400 text-center mb-4">@<%= current_user.username %></p>
     <div class="w-fit mx-auto">
         <%= link_to '#' do %>
             <i class="fa-solid fa-bookmark text-sky-600 text-xl ml-0.5 mr-2.5 mb-3"></i>

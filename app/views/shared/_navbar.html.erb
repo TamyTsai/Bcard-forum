@@ -1,10 +1,16 @@
 <div class="bgc-medium-blue pb-3">
   <nav class="navbar is-link max-w-7xl mx-auto" role="navigation" aria-label="main navigation">
     <!-- bulma藍底白字導覽列 再用自己寫的css蓋掉黑色底色 -->
+
+        <!-- <%= link_to root_path, class: 'bgc-medium-blue' do%>
+          <h1 class="text-2xl font-mono font-bold text-white mr-5 pt-4">Bcard</h1>
+        <% end %> -->
+
         <div class="navbar-brand bgc-medium-blue">
-        <%= link_to root_path, class: "navbar-item" do%> <!-- logo連結連回首頁 -->
-          <h1 class="text-2xl font-mono font-bold text-white mr-5">Bcard</h1>
-        <% end %>
+
+          <%= link_to root_path, class: "navbar-item" do%>
+            <h1 class="text-2xl font-mono font-bold text-white mr-5">Bcard</h1>
+          <% end %>
       
           <!-- 漢堡選單 -->
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -13,6 +19,7 @@
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
+
         </div>
       
         <div id="navbarBasicExample" class="navbar-menu bgc-medium-blue">
