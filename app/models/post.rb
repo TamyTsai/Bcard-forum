@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   
 
   belongs_to :user
+  # 動態長出 user 與 user= 實體方法
 
   validates :title, presence: true
 

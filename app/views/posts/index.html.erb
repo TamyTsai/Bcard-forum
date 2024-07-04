@@ -3,9 +3,9 @@
         <section class="columns pt-4">
             <%= render 'shared/profile-left' %>
             <section class="column is-9">
-                <div class="bg-neutral-100 rounded-2xl px-12 pt-4 pb-12">
+                <div class="bg-neutral-100 rounded-2xl px-14 pt-5 pb-12 mb-5">
                     <h1 class="text-2xl font-semibold">我的文章</h1>
-                    <hr class="border-gray-500">
+                    <hr class="h-px mt-5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
                     <br>
                     <% if current_user.posts.count == 0 %> <!-- 若當前登入的使用者 文章數量為0的話 -->
                         <div class="text-center my-28">

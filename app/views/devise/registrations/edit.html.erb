@@ -5,8 +5,9 @@
       <section class="columns pt-4">
           <%= render 'shared/profile-left' %>
           <section class="column is-9">
-              <div class="bg-neutral-100 rounded-2xl px-12 pt-4 pb-12 mb-5">
+              <div class="bg-neutral-100 rounded-2xl px-14 pt-5 pb-12 mb-5">
                 <h1 class="text-2xl font-semibold">設定</h1>
+                <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
                 <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
 
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -28,7 +29,8 @@
                   <p class="text-2xl font-semibold text-center mb-2"><%= current_user.cardname %></p>
                   <p class="text-gray-400 text-xl font-semibold text-center mb-5">@<%= current_user.username %></p>
 
-
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                  
                   <div class="field">
                     <%= f.label :avatar, '頭貼', class:'text-xl font-bold mr-3' %>
                     <%= f.file_field :avatar, type: 'file' %>
@@ -47,31 +49,39 @@
                     </label>
                   </div> -->
 
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
                   <div class="field">
                     <%= f.label :cardname, '卡稱', class:'text-xl font-bold' %>
                     <%= f.text_field :cardname, autofocus: true, class:'input mt-2.5' %>
                   </div>
 
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
                   <div class="field">
                     <%= f.label :username, 'ID', class:'text-xl font-bold' %><span>（必填）（不可與他人重複）</span>
                     <%= f.text_field :username, class:'input mt-2.5' %>
                   </div>
+
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
                   <div class="field">
                     <%= f.label :email, '常用信箱', class:'text-xl font-bold' %><span>（必填）</span>
                     <%= f.email_field :email, autocomplete: "email", class:'input mt-2.5' %>
                   </div>
                 
-                  <hr>
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
                   <div class="field">
                     <%= f.label :intro, '個人簡介', class:'text-xl font-bold' %>
                     <%= f.text_area :intro, rows: 5, class:'textarea mt-2.5' %>
                   </div>
 
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                   <% end %>
                 
                   <div class="field mt-4">
@@ -82,25 +92,34 @@
                       <p class="help">至少<%= @minimum_password_length %>個字元</p>
                     <% end %>
                   </div>
+
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 
                   <div class="field mt-4">
                     <%= f.label :password_confirmation, '確認密碼', class:'text-xl font-bold' %><br />
                     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'input mt-2.5' %>
                   </div>
+
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 
                   <div class="field mt-4">
                     <%= f.label :current_password, '請輸入目前密碼以驗證身份', class:'text-xl font-bold' %> 
                     <%= f.password_field :current_password, autocomplete: "current-password", class:'input mt-2.5' %>
                   </div>
+
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 
-                  <div class="actions text-right">
+                  <div class="actions">
                     <%= f.submit "更新資料", class: 'button bgc-light-blue text-white' %>
                   </div>
+
+                  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
                 <% end %>
                 
                 <span class="text-xl font-bold">刪除帳號</span>
                 <!-- <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div> -->
-                <%= button_to "刪除", registration_path(resource_name), data: { confirm: "是否確定刪除帳號？", turbo_confirm: "是否確定刪除帳號？" }, method: :delete, class:'button bg-zinc-200 mt-2.5' %>
+                <span><%= button_to "刪除", registration_path(resource_name), data: { confirm: "是否確定刪除帳號？", turbo_confirm: "是否確定刪除帳號？" }, method: :delete, class:'button bg-zinc-200 mt-2.5' %></span>
                 
                 <!-- 返回上一頁 -->
                 <!-- <%= link_to "Back", :back %> -->

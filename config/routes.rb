@@ -18,6 +18,28 @@ Rails.application.routes.draw do
 
   resources :posts
 
+  # 單篇文章頁面
+  # /@ID/文章標題-123
+  # post_page    GET    /@:username/:post_id(.:format)        pages#show
+  get '@:username/:post_id', to: 'pages#show', as: 'post_page'
+  # prefix設定為 post_page（不設定就沒有prefix可以用）
+  # 不想額外生一個controller，所以就指定用pages controller
+  # :username 是符號，冒號不會出現在網址
+
+  # 單一使用者文章列表
+  # /@ID
+  # user_page   GET    /@:username(.:format)           pages#user
+  get '@:username', to: 'pages#user', as: 'user_page'
+
+  # 熱門文章
+  # hot_page   GET    /hot(.:format)              pages#hot
+  get 'hot', to: 'pages#hot', as: 'hot_page'
+
+  # 創作者排行榜
+  # rank_page   GET    /rank(.:format)      pages#rank
+  get 'rank', to: 'pages#rank', as: 'rank_page'
+
+
   # 文章
   # resources :posts do
   #   resources :comments, only: [:create] # 每篇文章下會有很多留言，直接把留言路徑資源做在文章下
