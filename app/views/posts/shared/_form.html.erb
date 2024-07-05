@@ -7,7 +7,7 @@
     </div>
 <% end %>
 
-<div class="max-w-screen-md m-auto">
+<div class="max-w-screen-md m-auto mb-2">
     <!-- 水平置中另一個直覺思維就是使用 m-auto 自動調整左右 margin 而水平置中。但有個前提是 content 的 <div> 必須內縮與 content 同寬，m-auto 才有動態調整 margin 空間。 -->
     <!-- w-fit：width 與 content 同寬，但仍維持其 block 特性，讓 margin: auto 有操作空間
             m-auto：相當於同時設定 margin-left: auto、margin-right: auto，使之能自動調整左右 margin 而水平置中 -->
@@ -38,28 +38,31 @@
         </div>
     </article>
     
-    <!-- 建立表單之前 先建model -->
-    <%= form_for(post) do |form| %>
-        <div class="field">
-            <%= image_tag post.cover_image.variant(resize_to_fit: [500, 300]), class:'mb-4 w-fit mx-auto' if post.cover_image.attached? %>
-            <!-- 將影像縮放至符合指定尺寸，同時保留原始長寬比。如果影像大於指定尺寸，將縮小影像；如果小於，則放大影像。 -->
-            <%= form.label :cover_image, '封面照片', class:'text-xl font-bold' %><span class="text-xl mr-3">（選填）</span>
-            <%= form.file_field :cover_image, type: 'file' %>
-        </div>
-        <div class="field">
-            <%= form.text_field :title, placeholder: "標題", class: 'input my-4 text-2xl' %>
-        </div>
-        <div class="field">
-            <%= form.text_area :content, placeholder: "敘述", rows: '20', cols: '10', class: 'textarea' %>
-        </div>
-        <div class="text-right">
-            <%= form.submit '儲存為草稿', name: 'save_as_draft', class: 'button bg-zinc-200'%>
-            <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
-            <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
-            <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white' if post.may_publish? %> <!-- 文章狀態為 可以發佈時（現為草稿） 才出現 發佈按鈕-->
-            <%= form.submit '下架文章', name: 'unpublish', class: 'button bgc-light-blue text-white' if post.may_unpublish? %> <!-- 文章狀態為 可以下架時（現為已發佈文章） 才出現 下架文章按鈕-->
-        </div>
-    <% end %>
+    <div class="mb-5">
+        <!-- 建立表單之前 先建model -->
+        <%= form_for(post) do |form| %>
+            <div class="field">
+                <%= image_tag post.cover_image.variant(resize_to_fit: [500, 300]), class:'mb-4 w-fit mx-auto' if post.cover_image.attached? %>
+                <!-- 將影像縮放至符合指定尺寸，同時保留原始長寬比。如果影像大於指定尺寸，將縮小影像；如果小於，則放大影像。 -->
+                <%= form.label :cover_image, '封面照片', class:'text-xl font-bold' %><span class="text-xl mr-3">（選填）</span>
+                <%= form.file_field :cover_image, type: 'file' %>
+            </div>
+            <div class="field">
+                <%= form.text_field :title, placeholder: "標題", class: 'input my-4 text-2xl' %>
+            </div>
+            <div class="field">
+                <%= form.text_area :content, placeholder: "敘述", rows: '20', cols: '10', class: 'textarea' %>
+            </div>
+            <div class="text-right">
+                <%= form.submit '儲存', name: 'save_as_draft', class: 'button bg-zinc-200'%>
+                <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
+                <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
+                <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white' if post.may_publish? %> <!-- 文章狀態為 可以發佈時（現為草稿） 才出現 發佈按鈕-->
+                <%= form.submit '下架文章', name: 'unpublish', class: 'button bgc-light-blue text-white' if post.may_unpublish? %> <!-- 文章狀態為 可以下架時（現為已發佈文章） 才出現 下架文章按鈕-->
+            </div>
+        <% end %>
+    </div> 
+
 </div>
     
     
