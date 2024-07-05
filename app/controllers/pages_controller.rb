@@ -1,6 +1,8 @@
 # $ rails g controller pages
 class PagesController < ApplicationController
 
+    before_action :find_post, only: [:show]
+
     def index # 所有已發佈文章列表（首頁、最新文章）# 按照文章建立時間排序 已發佈文章
 
         # @posts = Post.where(status: 'published').order(created_at: :desc).includes(:user)
@@ -34,6 +36,13 @@ class PagesController < ApplicationController
     def rank # 創作者排行榜 # 按照被追蹤數顯示使用者
         # 等有追蹤欄位後修改
         @ranks = User.all
+    end
+
+    private
+
+    def find_post
+        @post = Post.friendly.find(params[:post_id])
+        # 從網址給的資訊 找出特定文章
     end
 
 end

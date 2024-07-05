@@ -2,51 +2,62 @@
 <div class="bgc-dark-blue min-h-screen">
     <section class="columns max-w-3xl mx-auto">
         <section class="column is-12 bg-neutral-100 my-4 rounded p-14">
-            <div class="text-3xl font-bold mb-4">文章標題</div>
+            <div class="text-3xl font-bold mb-4"><%= @post.title %></div>
             <!-- <div class="text-3xl font-bold"><= link_to post.title, post_page_path(post.user.username, post) %></div> -->
             <section class="columns">
-                <section class="column is-7">
+                <section class="column is-10">
                     <article class="media">
                         <figure class="media-left mr-2">
-                            <img src="https://fakeimg.pl/25x25/" class="avatar">
-                            <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭
-                            < if post.user.avatar.attached? %>
-                                <= image_tag post.user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' %>
-                            < else %>
+                            <!-- <img src="https://fakeimg.pl/25x25/" class="avatar"> -->
+                            <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                            <% if @post.user.avatar.attached? %>
+                                <%= image_tag @post.user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' %>
+                            <% else %>
                                 <i class="fa-solid fa-circle-user text-gray-500 text-2xl"></i>
-                            < end %> -->
+                            <% end %>
                         </figure>
                         <div class="media-content">
                             <!-- ID -->
-                            <span class="text-gray-500">@ID</span>
+                            <span class="text-gray-500">@<%= link_to @post.user.username, user_page_path(@post.user.username) %></span>
                             <!-- <span class="text-gray-500">@< link_to post.user.username, user_page_path(post.user.username) %></span> -->
                             <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
                             <span>
-                                <span class="text-gray-500">・卡稱</span>
+                                <span class="text-gray-500">・<%= link_to @post.user.cardname, user_page_path(@post.user.username) %></span>
                                 <!-- < if post.user.cardname !=nil %>
                                     <span class="text-gray-500">・< link_to post.user.cardname, user_page_path(post.user.username) %></span>
                                 < else %>
                                 < end %> -->
                             </span>
                             <span class="text-gray-500">・</span><span class="text-sky-500">追蹤</span>
-                            <span class="text-gray-500">・2024年7月0日 00:12</span>
-                            <!-- <span class="text-gray-500">・<% Time.current.strftime("%Y年%m月%d日 %I:%M") %></span> -->
+                            <span class="text-gray-500">・<%= @post.created_at.strftime("%Y年%m月%d日 %I:%M") %></span>
                         </div>
                     </article>
                 </section>
-                <!-- 自己的文章才顯示 編輯、刪除 -->
-                <section class="column is-5 text-right">
-                    <!-- <= link_to edit_post_path(post) do %> -->
-                        <i class="fa-solid fa-pen mr-2 text-gray-400"></i>
-                    <!-- < end %> -->
-                    <!-- <= link_to post_path(post), data: {turbo_method: :delete, turbo_confirm: "確定刪除此文章？"}  do %> -->
-                        <i class="fa-solid fa-trash-can text-gray-400"></i>
-                    <!-- < end %> -->
-                </section>
+                <!-- 自己的文章才顯示 編輯、刪除 按鈕-->
+                <% if @post.user == current_user %>
+                    <section class="column is-2 text-right">
+                        <%= link_to edit_post_path(@post) do %>
+                            <i class="fa-solid fa-pen mr-2 text-gray-400"></i>
+                        <% end %>
+                        <%= link_to post_path(@post), data: {turbo_method: :delete, turbo_confirm: "確定刪除此文章？"}  do %>
+                            <i class="fa-solid fa-trash-can text-gray-400"></i>
+                        <% end %>
+                    </section>
+                <% else %>
+                <% end %>
             </section>
 
-            <p>文章內文</p>
-            <!-- <p><= post.content %></p> -->
+            <div class="w-fit mx-auto mb-2">
+                <%= image_tag @post.cover_image.variant(resize_to_limit: [640, nil]) %>
+                <!-- 將影像縮小到符合指定尺寸，同時保留原始長寬比。僅當影像大於指定尺寸時才會縮放影像。 -->
+            </div>
+
+            <p><%= simple_format(@post.content, class: 'description') %></p>
+            <!-- simple_format 讓換行和超連結 正確呈現 -->
+            <!-- 使用 class: 'description'方便css選取其 以操縱換行與換行間的間距（換行兩次的段落間 會各自被各自的標籤包住） -->
+            <!-- <p class='description'>內文</p> -->
+            <!-- https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format -->
+
             <div class="columns mt-2">
                 <div class="column">
                     <i class="fa-brands fa-gratipay text-rose-400 mr-0.5 text-2xl"></i>
