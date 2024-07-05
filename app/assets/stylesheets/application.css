@@ -22,7 +22,7 @@
  *= require_self
  */
 
-/* 全站都會用到的css */
+/* 全站都會用到的css（用asset pipeline打包） */
 
 .bgc-light-blue {
    background-color: #53ACD8;
