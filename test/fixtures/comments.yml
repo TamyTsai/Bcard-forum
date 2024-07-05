@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  post: one
+  content: MyText
+  deleted_at: 2024-07-05 16:28:49
+
+two:
+  user: two
+  post: two
+  content: MyText
+  deleted_at: 2024-07-05 16:28:49

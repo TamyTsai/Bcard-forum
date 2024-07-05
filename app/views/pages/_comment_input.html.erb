@@ -1,0 +1,38 @@
+<% if user_signed_in? %> <!-- 使用者有登入才出現留言輸入區塊 -->
+    <article class="media mt-5">
+        <figure class="media-left">
+            <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+            <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
+            <% else %>
+                <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
+            <% end %>
+        </figure>
+
+        <div class="media-content">
+            <!-- ID -->
+            <span class="text-gray-600">@<%= current_user.username %></span>
+            <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
+            <span>
+                <% if current_user.cardname !=nil %>
+                    <span>・<%= current_user.cardname %></span>
+                <% else %>
+                <% end %>
+            </span>
+            <p class="text-gray-400 text-sm mb-1.5"><%= Time.current.strftime("%Y年%m月%d日 %I:%M") %></p>
+            <!-- https://khiav223577.github.io/blog/2018/03/03/Rails-%E4%B8%AD%E5%B8%B8%E6%90%9E%E6%B7%B7%E7%9A%84%E6%99%82%E5%8D%80%E5%95%8F%E9%A1%8C-Time-now-vs-Time-current/ -->
+            <!-- Time.now 使用當前機器作業系統的時區；Time.current 使用 Rails 中設定的時區 -->
+        </div>
+    </article>
+    <textarea rows="5" class="textarea"></textarea>
+    <div class="text-right">
+        <div class="button bgc-light-blue text-white my-2 ">送出</div>
+    </div>
+<% else %> <!-- 沒登入的話 -->
+    <p class="text-xl font-bold text-center">登入後即可一起討論喔！</p>
+    <div class="text-center mt-2 mb-4">
+        <%= link_to '註冊', new_user_registration_path, class:'button bgc-light-blue text-white' %>
+        <%= link_to "登入", new_user_session_path, class: 'button bgc-light-blue text-white' %>
+    </div>
+<% end %>

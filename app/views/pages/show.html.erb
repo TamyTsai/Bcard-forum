@@ -73,61 +73,36 @@
             </div>
             <div class="text-gray-500">共 0 則留言</div>
             <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-            <article class="media mt-5">
-                <figure class="media-left">
-                    <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
-                    <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
-                    <% if current_user.avatar.attached? %>
-                        <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
-                    <% else %>
-                        <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
-                    <% end %>
-                </figure>
-            
-                <div class="media-content">
-                    <!-- ID -->
-                    <span class="text-gray-600">@<%= current_user.username %></span>
-                    <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
-                    <span>
-                        <% if current_user.cardname !=nil %>
-                            <span>・<%= current_user.cardname %></span>
-                        <% else %>
-                        <% end %>
-                    </span>
-                    <p class="text-gray-400 text-sm mb-1.5"><%= Time.current.strftime("%Y年%m月%d日 %I:%M") %></p>
-                    <!-- https://khiav223577.github.io/blog/2018/03/03/Rails-%E4%B8%AD%E5%B8%B8%E6%90%9E%E6%B7%B7%E7%9A%84%E6%99%82%E5%8D%80%E5%95%8F%E9%A1%8C-Time-now-vs-Time-current/ -->
-                    <!-- Time.now 使用當前機器作業系統的時區；Time.current 使用 Rails 中設定的時區 -->
-                </div>
-            </article>
-            <textarea rows="5" class="textarea"></textarea>
-            <div class="text-right">
-                <div class="button bgc-light-blue text-white my-2 ">送出</div>
-            </div>
+          
+            <!-- 留言輸入區 -->
+            <%= render 'comment_input' %>
+
             <hr class="h-px mb-4 bg-gray-200 border-0 dark:bg-gray-700">
 
+            <!-- 所有留言區 -->
             <section class="columns">
                 <section class="column is-7">
                     <article class="media">
                         <figure class="media-left">
                             <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
-                            <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
-                            <% if current_user.avatar.attached? %>
-                                <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
-                            <% else %>
+                            <img src="https://fakeimg.pl/50x50/" class="avatar">
+                            <!-- < if comment.user.avatar.attached? %>
+                                <= image_tag comment.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
+                            < else %>
                                 <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
-                            <% end %>
+                            < end %> -->
                         </figure>
                         
                         <div class="media-content">
                             <!-- 有卡稱 顯示卡稱+ID，沒卡稱 就只顯示ID -->
-                            <% if current_user.cardname != nil %>
-                                <%= link_to current_user.cardname, user_page_path(current_user.username) %><br>
-                                <%= link_to "@#{current_user.username}", user_page_path(current_user.username), class:'text-gray-400 text-sm' %>
-                            <% else %>
-                                <%= link_to user_page_path(current_user.username) do %>
-                                    <div class="text-gray-600 pt-2.5">@<%= current_user.username %></div>
-                                <% end %>
-                            <% end %>                                
+                            <!-- < if comment.user.cardname != nil %>
+                                <= link_to comment.user.cardname, user_page_path(comment.user.username) %><br>
+                                <= link_to "@#{comment.user.username}", user_page_path(comment.user.username), class:'text-gray-400 text-sm' %>
+                            < else %>
+                                <= link_to user_page_path(comment.user.username) do %>
+                                    <div class="text-gray-600 pt-2.5">@<= comment.user.username %></div>
+                                < end %>
+                            < end %>                                 -->
                         </div>
                     </article>
                 </section>
