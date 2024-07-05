@@ -54,11 +54,15 @@
                 <%= form.text_area :content, placeholder: "敘述", rows: '20', cols: '10', class: 'textarea' %>
             </div>
             <div class="text-right">
-                <%= form.submit '儲存', name: 'save_as_draft', class: 'button bg-zinc-200'%>
-                <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
-                <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
-                <%= form.submit '發佈', name: 'publish', class: 'button bgc-light-blue text-white' if post.may_publish? %> <!-- 文章狀態為 可以發佈時（現為草稿） 才出現 發佈按鈕-->
-                <%= form.submit '下架文章', name: 'unpublish', class: 'button bgc-light-blue text-white' if post.may_unpublish? %> <!-- 文章狀態為 可以下架時（現為已發佈文章） 才出現 下架文章按鈕-->
+                <% if post.may_publish? %> <!-- 文章狀態為 可以發佈時（現為草稿） -->
+                    <%= form.submit '儲存', name: 'save_as_draft', class: 'button bg-zinc-200'%>
+                    <!-- Parameters: {"authenticity_token"=>"[FILTERED]", "post"=>{"title"=>"第一篇文章", "content"=>"第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文第一篇文章內文"}, "save_as_draft"=>"儲存為草稿", "id"=>"1"} -->
+                    <!-- paramseters hash中 有 "save_as_draft（key）"=>"儲存為草稿（value）" -->
+                    <%= form.submit '發佈文章', name: 'publish', class: 'button bgc-light-blue text-white' if post.may_publish? %>
+                <% else %> <!-- 文章狀態非 可以發佈時（現為已發佈） -->
+                    <%= form.submit '下架文章', name: 'unpublish', class: 'button bg-zinc-200' if post.may_unpublish? %>
+                    <%= form.submit '儲存', name: 'save_as_draft', class: 'button bgc-light-blue text-white'%>
+                <% end %>
             </div>
         <% end %>
     </div> 
