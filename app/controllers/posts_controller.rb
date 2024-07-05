@@ -25,9 +25,11 @@ class PostsController < ApplicationController
 
     def create # 送出建立文章表單
         @post = current_user.posts.new(post_params)
-        @post.status = 'published' if params[:publish] 
+        # @post.status = 'published' if params[:publish] 
         # params hash中有:publish這個key的話（若使用者按發佈按鈕，就會讓params hash中有:publish這個key） 就將posts資料表status欄位值指定為published
         # 文章status欄位預設值為draft，所以不用寫該情況
+        @post.publish! if params[:publish] 
+        # post model已設定no_direct_assignment: true 所以不能直接改欄位值 要用aasm的方法
 
         if @post.save
             # 新增文章頁面 發佈 與 儲存為草稿 按鈕 之流程判斷
