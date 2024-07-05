@@ -21,7 +21,8 @@ class Post < ApplicationRecord
   
   # 資料間關聯
   belongs_to :user
-  # 動態長出 user 與 user= 實體方法
+  # 動態長出 user 與 user= 
+  has_many :comments
   has_one_attached :cover_image
   # 每篇文章都可以有一個封面照片
   # Active Storage

@@ -21,6 +21,7 @@ class PostsController < ApplicationController
         # 於user model 設定 has_many :posts 後可以寫成
         @post = current_user.posts.new
         # 可對user實體（devise的current_user）使用posts方法
+        # 先找出哪個 使用者 要建立文章
     end
 
     def create # 送出建立文章表單

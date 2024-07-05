@@ -16,7 +16,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#index"
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :edit, :update, :destroy]
+    # post_comments     POST   /posts/:post_id/comments(.:format)                  comments#create
+    # edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format)         comments#edit
+    # post_comment      PATCH  /posts/:post_id/comments/:id(.:format)              comments#update
+    #                   PUT    /posts/:post_id/comments/:id(.:format)              comments#update
+    # post_comment      DELETE /posts/:post_id/comments/:id(.:format)              comments#destroy
+  end
 
   # 單篇文章頁面
   # /@ID/文章標題-123
