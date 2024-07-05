@@ -23,7 +23,15 @@ class Post < ApplicationRecord
   # 系統中所有查詢都會套用此篩選
   # 3.0.0 :002 > Post.all
   # Post Load (0.6ms)  SELECT "posts".* FROM "posts" WHERE "posts"."deleted_at" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
-  scope :published_posts, -> { where(status: 'published') }
+
+  # scope :published_posts, -> { where(status: 'published') }
+  # 按 建立順序 顯示的 已發佈文章
+  scope :published_posts_created_at, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
+  # published為aasm送的方法，能撈出所有 狀態欄位 值 為published的文章
+
+  # 按 愛心數順序 顯示的 已發佈文章（待修改）
+  scope :published_posts_love, -> { published.with_attached_cover_image.order(updated_at: :desc).includes(:user) }
+  
 
   # 實體方法（belongs_to是類別方法）
   # 覆寫既有的destroy方法（變成軟刪除）

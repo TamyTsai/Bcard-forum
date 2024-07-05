@@ -11,8 +11,14 @@ class PagesController < ApplicationController
         # 搜尋條件寫在 post model 中 scope :published_posts, -> { where(status: 'published') }
         # 提升程式碼再用性
 
-        @posts = Post.published.order(created_at: :desc).includes(:user)
+        # @posts = Post.published.with_attached_cover_image.order(created_at: :desc).includes(:user)
         # published為aasm送的方法，能撈出所有 狀態欄位 值 為published的文章，不用自己寫scope
+        # .with_attached_cover_image方法可以 解決頁面顯示 ActiveStorage上傳之檔案 的N+1問題
+        # orage_attachments"."record_id" IN ($3, $4, $5)  [["record_type", "Post"], ["name", "cover_image"], ["record_id", 9], ["record_id", 7], ["record_id", 1]]
+        # 12:40:14 web.1  |   ↳ app/views/pages/shared/_published-posts-list.html.erb:9
+
+        @posts = Post.published_posts_created_at
+        # post model：scope :published_posts_created_at, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
     end
 
     def show # 單一文章頁面
@@ -22,8 +28,7 @@ class PagesController < ApplicationController
     end
 
     def hot # 熱門文章 # 按照文章愛心數排序 已發佈文章
-        # 等有愛心欄位後修改
-        @posts = Post.published_posts.order(created_at: :desc).includes(:user)
+        @posts = Post.published_posts_love
     end
 
     def rank # 創作者排行榜 # 按照被追蹤數顯示使用者

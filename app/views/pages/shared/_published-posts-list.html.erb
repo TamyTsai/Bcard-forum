@@ -7,7 +7,7 @@
         </div>
     <% else %> <!-- 若整個論壇 已發佈 文章數量 不為0的話 -->
         <% @posts.each do |post| %>
-            <article class="media">
+            <div class="media">
                 <figure class="media-left mr-2">
                     <!-- <img src="https://fakeimg.pl/25x25/" class="avatar"> -->
                     <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
@@ -33,17 +33,35 @@
                     </span>
                     <span class="text-gray-500">・<%= time_ago_in_words(post.created_at) %></span>
                 </div>
-            </article>
-            
-            <span class="text-xl font-bold pb-6"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-            <!-- 點擊文章標題 進入單篇文章頁面
-            # /@ID/文章標題-123
-            # post_page    GET    /@:username/:post_id(.:format)        pages#show
-            post_page_path(文章作者的username, 文章id) -->
-            <!-- 因為post model 有設定 belongs_to :user 所以有user實體方法可以用-->
-            <p><%= strip_tags(post.content).truncate(80) %></p>
-            <!-- strip_tags 拔掉html標籤 -->
-            <!-- truncate節短文字 -->
+            </div>
+
+            <!-- 有上傳封面照片就顯示 照片和內文，沒上傳就只顯示內文 -->
+            <% if post.cover_image.attached? %>
+                <div class="columns">
+                    <div class="column is-10">
+                        <span class="text-xl font-bold pb-6"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                        <!-- 點擊文章標題 進入單篇文章頁面
+                        # /@ID/文章標題-123
+                        # post_page    GET    /@:username/:post_id(.:format)        pages#show
+                        post_page_path(文章作者的username, 文章id) -->
+                        <!-- 因為post model 有設定 belongs_to :user 所以有user實體方法可以用-->
+                        <p><%= strip_tags(post.content).truncate(70) %></p>
+                        <!-- strip_tags 拔掉html標籤 -->
+                        <!-- truncate節短文字 -->
+                    </div>
+                    <div class="column is-2">
+                        <!-- <img src="https://fakeimg.pl/150/" class="rounded-xl"> -->
+                        <%= image_tag post.cover_image.variant(resize_to_fill: [150, 150]), class:'rounded-xl' %>
+                        <!-- 將影像縮放至填滿指定尺寸，同時保留原始長寬比。必要時，將在較大的尺寸上裁剪影像。 -->
+                    </div>
+                </div>
+            <% else %>
+                <span class="text-xl font-bold pb-6"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                <p><%= strip_tags(post.content).truncate(70) %></p>
+            <% end %>
+
+
+
             <div class="mt-2.5 mb-2">
                 <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
                 <span class="text-gray-400 mr-4">0</span>
