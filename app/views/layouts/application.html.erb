@@ -18,7 +18,7 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <!-- 檔案路徑從views後開始寫 -->
+    <!-- 檔案路徑從views後開始寫（在同一個目錄下的話 就直接寫檔名即可） -->
     <%= render 'shared/flash' if notice %>
     <%= yield %>
   </body>

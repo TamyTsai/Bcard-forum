@@ -74,7 +74,7 @@ class PostsController < ApplicationController
 
     private
     def post_params # 資料清洗
-        params.require(:post).permit(:title, :content)
+        params.require(:post).permit(:title, :content, :cover_image)
     end
 
     def find_post

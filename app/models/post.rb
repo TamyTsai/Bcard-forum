@@ -7,23 +7,35 @@ class Post < ApplicationRecord
   extend FriendlyId
   # friendly_id :要被當作slug用的欄位名稱, use: :slugged
   friendly_id :slug_post , use: :slugged
-  
 
+  # 表單送出後 寫進資料庫前 之 後端驗證
+  validates :title, presence: true
+  
+  # 資料間關聯
   belongs_to :user
   # 動態長出 user 與 user= 實體方法
+  has_one_attached :cover_image
+  # 每篇文章都可以有一個封面照片
+  # Active Storage
 
-  validates :title, presence: true
-
+  # 搜尋條件範圍
   default_scope { where(deleted_at: nil) }
   # 系統中所有查詢都會套用此篩選
   # 3.0.0 :002 > Post.all
   # Post Load (0.6ms)  SELECT "posts".* FROM "posts" WHERE "posts"."deleted_at" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
 
+  # 實體方法（belongs_to是類別方法）
   # 覆寫既有的destroy方法（變成軟刪除）
   def destroy
     update(deleted_at: Time.now)
   end
 
+  def normalize_friendly_id(input) # babosa方法 轉換文字編碼
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+  # http://localhost:3000/posts/文章中文標題/edit
+
+  
   aasm(column: 'status', no_direct_assignment: true) do 
   # 預設會去找aasm_state欄位 以(column: 'status')更改預設
   # 不允許直接更動欄位值 只能透過狀態機轉換方法改
@@ -48,11 +60,6 @@ class Post < ApplicationRecord
   # 直接改欄位值的話...
   # 3.0.0 :002 > p1.update(status: 'publish')
   # (irb):2:in `<main>': direct assignment of AASM column has been disabled (see AASM configuration for this class) (AASM::NoDirectAssignmentError)
-
-  def normalize_friendly_id(input) # babosa方法 轉換文字編碼
-    input.to_s.to_slug.normalize(transliterations: :russian).to_s
-  end
-  # http://localhost:3000/posts/文章中文標題/edit
 
   private
 
