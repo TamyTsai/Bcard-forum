@@ -28,7 +28,8 @@
     </article>
 
     <!-- vs  form_for(post) do |form| -->
-    <%= form_with model: Comment.new, url: post_comments_path(post), remote: true do |form| %>
+    <%= form_with model: comment, url: post_comments_path(post), remote: true do |form| %>
+    <!-- model: 物件 -->
     <!-- post_comments    POST   /posts/:post_id/comments(.:format)       comments#create -->
     <!-- remote: true 預設為開啟 使用AJAX方法在背後傳資料 -->
     <!-- data: {turbo: true} ？-->

@@ -24,6 +24,10 @@ class PagesController < ApplicationController
     end
 
     def show # 單一文章頁面
+        # 留言表單因為位於單一文章頁面，所以是使用pages controller的show action
+        @comment = @post.comments.new # 建立留言物件
+        # @comments = @post.comments.order(id: :desc) # 撈出所有留言（按comment_id反向排序）
+        @comments = @post.comments.order(created_at: :desc)
     end
 
     def user # 單一使用者文章列表
