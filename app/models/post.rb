@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   # 系統中所有查詢都會套用此篩選
   # 3.0.0 :002 > Post.all
   # Post Load (0.6ms)  SELECT "posts".* FROM "posts" WHERE "posts"."deleted_at" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+  scope :published_posts, -> { where(status: 'published') }
 
   # 實體方法（belongs_to是類別方法）
   # 覆寫既有的destroy方法（變成軟刪除）
