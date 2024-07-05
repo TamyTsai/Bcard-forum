@@ -67,7 +67,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post.destroy
+        @post.destroy # 使用paranoia套件後，此處的destroy方法 已經 不會把資料直接從資料庫 抹除
         redirect_to posts_path, notice: '文章已刪除', status: :see_other
         # destroy 動作會從資料庫中擷取文章（before action），並呼叫 destroy。然後，它會將瀏覽器重新導向到 文章列表頁，狀態碼為 303 另尋他處。
     end

@@ -2,11 +2,19 @@
 
 class Post < ApplicationRecord
 
+  # 有限狀態機套件
   include AASM
 
+  # 友善ID套件
   extend FriendlyId
   # friendly_id :要被當作slug用的欄位名稱, use: :slugged
   friendly_id :slug_post , use: :slugged
+
+  # 軟刪除套件
+  acts_as_paranoid
+  # 覆寫destroy方法
+  # 增加預設搜尋條件
+  # destroy後rails c看不到，但尚存在於資料庫
 
   # 表單送出後 寫進資料庫前 之 後端驗證
   validates :title, presence: true
@@ -19,7 +27,7 @@ class Post < ApplicationRecord
   # Active Storage
 
   # 搜尋條件範圍
-  default_scope { where(deleted_at: nil) }
+  # default_scope { where(deleted_at: nil) } ＃改用paranoia套件
   # 系統中所有查詢都會套用此篩選
   # 3.0.0 :002 > Post.all
   # Post Load (0.6ms)  SELECT "posts".* FROM "posts" WHERE "posts"."deleted_at" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
@@ -35,9 +43,10 @@ class Post < ApplicationRecord
 
   # 實體方法（belongs_to是類別方法）
   # 覆寫既有的destroy方法（變成軟刪除）
-  def destroy
-    update(deleted_at: Time.now)
-  end
+  # def destroy
+  #   update(deleted_at: Time.now)
+  # end
+  # 改用paranoia套件
 
   def normalize_friendly_id(input) # babosa方法 轉換文字編碼
     input.to_s.to_slug.normalize(transliterations: :russian).to_s

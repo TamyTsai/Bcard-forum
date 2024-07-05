@@ -53,6 +53,9 @@ gem 'friendly_id', '~> 5.5', '>= 5.5.1'
 # babosa 處理friendly id 的編碼
 gem 'babosa', '~> 2.0'
 
+# paranoia 軟刪除
+gem 'paranoia', '~> 2.6', '>= 2.6.3'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # Active Storage 的各種功能仰賴 Rails 沒有安裝的第三方軟體，必須另外安裝 libvips v8.6+ 或 ImageMagick，用於影像分析和轉換
 # 影像分析和轉換也需要 image_processing 這個 gem。
