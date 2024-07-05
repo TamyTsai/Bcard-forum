@@ -14,9 +14,13 @@ class PagesController < ApplicationController
     end
 
     def hot # 熱門文章 # 按照文章愛心數排序 已發佈文章
+        # 等有愛心欄位後修改
+        @posts = Post.order(created_at: :desc).includes(:user)
     end
 
     def rank # 創作者排行榜 # 按照被追蹤數顯示使用者
+        # 等有追蹤欄位後修改
+        @ranks = User.all
     end
 
 end

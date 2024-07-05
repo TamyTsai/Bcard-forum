@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
 
+    # 驗證使用者有登入 才能用post相關頁面 不然就踢到登入頁面
     before_action :authenticate_user!
     # 後面還可以接only 或 except
 

@@ -2,24 +2,11 @@
 <!-- 首頁 -->
 <div class="bgc-dark-blue min-h-screen">
     <section class="columns max-w-7xl mx-auto">
+
         <!-- 左側欄位 -->
-        <section class="column is-2 mt-4">
-            <!-- 最新文章（首頁） 按文章建立時間 排序 顯示文章-->
-            <div class="text-white text-lg mb-3">
-                <i class="fa-solid fa-newspaper mr-3"></i><span>最新文章</span>
-            </div>
+        <%= render 'pages/shared/pages-left' %>
 
-            <!-- 熱門文章 按文章愛心數 排序 顯示文章-->
-            <div class="text-white text-lg mb-3">
-                <i class="fa-solid fa-fire mr-3"></i><span>熱門文章</span>
-            </div>
-            <!-- 創作者排行榜 按被追蹤數 排序 使用者 -->
-            <div class="text-white text-lg mb-3">
-                <i class="fa-solid fa-award mr-3"></i><span>創作者排行榜</span>
-            </div>
-        </section>
-
-        <!-- 文章列表 -->
+        <!-- 中間欄位-文章列表 -->
         <section class="column is-7 bg-white my-4 rounded p-14">
             <h1 class="text-2xl font-semibold">最新文章</h1>
             <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
@@ -54,7 +41,7 @@
                                 <% else %>
                                 <% end %>
                             </span>
-                            <span class="text-gray-500">・ <%= time_ago_in_words(post.created_at) %></span>
+                            <span class="text-gray-500">・<%= time_ago_in_words(post.created_at) %></span>
                         </div>
                     </article>
                     
@@ -78,11 +65,8 @@
             <% end %>
         </section>
 
-        <!-- 廣告 -->
-        <section class="column is-3">
-            <img src="https://fakeimg.pl/300/?retina=1&text=廣告&font=noto" class="mb-2.5 mt-1">
-            <img src="https://fakeimg.pl/300/?retina=1&text=廣告&font=noto" class="mb-2.5">
-            <img src="https://fakeimg.pl/300x600/?retina=1&text=廣告&font=noto" class="mb-2.5">
-        </section>
+        <!-- 右側欄位-廣告 -->
+        <%= render 'pages/shared/pages-right' %>
+
     </section>
 </div>

@@ -10,8 +10,15 @@
             <% end %>
         </div>
     </div>
-    <p class="text-white text-2xl font-semibold text-center mb-1"><%= current_user.cardname %></p>
-    <p class="text-gray-400 text-center mb-4">@<%= current_user.username %></p>
+
+    <!-- 有卡稱 顯示卡稱+ID，沒卡稱 就只顯示ID -->
+    <% if current_user.cardname != nil %>
+        <p class="text-white text-2xl font-semibold text-center mb-1"><%= link_to current_user.cardname, user_page_path(current_user.username) %></p>
+        <p class="text-gray-400 text-center mb-4">@<%= link_to current_user.username, user_page_path(current_user.username)%></p>
+    <% else %>
+        <p class="text-white text-2xl font-semibold text-center mb-4">@<%= link_to current_user.username, user_page_path(current_user.username)%></p>
+    <% end %>
+
     <div class="w-fit mx-auto">
         <%= link_to '#' do %>
             <i class="fa-solid fa-bookmark text-sky-600 text-xl ml-0.5 mr-2.5 mb-3"></i>

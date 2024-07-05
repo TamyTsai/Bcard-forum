@@ -1,7 +1,7 @@
 <div class="bgc-dark-blue min-h-screen">
     <div class="max-w-5xl m-auto">
         <section class="columns pt-4">
-            <%= render 'shared/profile-left' %>
+            <%= render 'posts/shared/profile-left' %>
             <section class="column is-9">
                 <div class="bg-neutral-100 rounded-2xl px-14 pt-5 pb-12 mb-5">
                     <h1 class="text-2xl font-semibold">我的文章</h1>
@@ -53,7 +53,7 @@
                                             <% end %>
                                         </section>
                                     </section>
-                                    <span class="text-xl font-bold"><%= post.title %></span>
+                                    <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
                                     <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
                                     <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
                                     <p><%= post.content %></p>

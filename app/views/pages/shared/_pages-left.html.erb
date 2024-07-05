@@ -1,0 +1,23 @@
+<!-- pages左側欄位 -->
+<section class="column is-2 mt-4">
+    <!-- 最新文章（首頁） 按文章建立時間 排序 顯示 所有已發佈文章-->
+    <%= link_to root_path do %>
+        <div class="text-white text-lg mb-3">
+            <i class="fa-solid fa-newspaper mr-3"></i><span>最新文章</span>
+        </div>
+    <% end %>
+
+    <!-- 熱門文章 按文章愛心數 排序 顯示 所有已發佈文章-->
+    <%= link_to hot_page_path do %>
+        <div class="text-white text-lg mb-3">
+            <i class="fa-solid fa-fire mr-3"></i><span>熱門文章</span>
+        </div>
+    <% end %>
+
+    <!-- 創作者排行榜 按被追蹤數 排序 使用者 -->
+    <%= link_to rank_page_path do %>
+        <div class="text-white text-lg mb-3">
+            <i class="fa-solid fa-award mr-3"></i><span>創作者排行榜</span>
+        </div>
+    <% end %>
+</section>
