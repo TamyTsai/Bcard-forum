@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     member do
       post :love
       # love_post     POST   /posts/:id/love(.:format)    posts#love
+      # 為文章按愛心功能 的 api
     end
     resources :comments, only: [:create, :edit, :update, :destroy]
     # post_comments     POST   /posts/:post_id/comments(.:format)                  comments#create
