@@ -69,9 +69,13 @@ gem "image_processing", "~> 1.2"
 # ImageMagick (in rails < 7)
 # $ brew install imagemagick
 
+# 開發群組
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+
+  # 中控台套件
+  gem 'hirb-unicode', '~> 0.0.5'
 end
 
 group :development do

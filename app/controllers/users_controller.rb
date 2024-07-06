@@ -14,17 +14,16 @@ class UsersController < ApplicationController
             # 先找到要追蹤哪個使用者 # before action已做
 
             # 修改資料表欄位值
-            # user.following = user
-
-            render json: {status: '追蹤中'} # 要傳給前端controller的資料（json格式）
+            render json: {status: current_user.follow!(@user)} # 要傳給前端controller的資料（json格式）
+            # current_user.follow!(@user) return '已取消追蹤' or '已追蹤'
         else
-            render json: {status: '先登入才能追蹤作者喔'}
+            render json: {status: '使用者未登入'}
         end
     end
 
     private
 
-    def find_user #找出要追蹤哪個使用者
+    def find_user #找出 要追蹤哪個使用者
         @user = User.find(params[:id])
     end
 

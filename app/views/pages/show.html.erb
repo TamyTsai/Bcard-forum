@@ -31,7 +31,20 @@
                             <span class="text-gray-500">・</span>
                             <%= link_to '#', data: { action: "user#follow", user: @post.user.id } do %>
                             <!-- <a data-action="user#follow" data-user="1" href="#"> -->
-                                <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">追蹤</span>
+                                <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">
+                                    <%= (user_signed_in? && current_user.follow?(@post.user))? '追蹤中' : '追蹤' %>
+                                </span>
+                                <!-- <span data-user-target="followButton">
+                                    < if user_signed_in? && current_user.follow?(@post.user) %>
+                                        <span class="followButton text-gray-500 hover:text-gray-400" >
+                                            追蹤中
+                                        </span>
+                                    < else %>
+                                        <span class="followButton text-sky-500 hover:text-sky-400" >
+                                            追蹤
+                                        </span>
+                                    < end %>
+                                </span> -->
                             <% end %>
                             <span class="text-gray-500">・<%= @post.created_at.strftime("%Y年%m月%d日 %I:%M") %></span>
                         </div>
