@@ -4,7 +4,7 @@
         <section class="column is-12 bg-neutral-100 my-4 rounded p-14">
             <div class="text-3xl font-bold mb-4"><%= @post.title %></div>
             <!-- <div class="text-3xl font-bold"><= link_to post.title, post_page_path(post.user.username, post) %></div> -->
-            <section class="columns">
+            <section class="columns" data-controller="user">
                 <section class="column is-10">
                     <article class="media">
                         <figure class="media-left mr-2">
@@ -28,7 +28,11 @@
                                 < else %>
                                 < end %> -->
                             </span>
-                            <span class="text-gray-500">・</span><span class="text-sky-500">追蹤</span>
+                            <span class="text-gray-500">・</span>
+                            <%= link_to '#', data: { action: "user#follow", user: @post.user.id } do %>
+                            <!-- <a data-action="user#follow" data-user="1" href="#"> -->
+                                <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">追蹤</span>
+                            <% end %>
                             <span class="text-gray-500">・<%= @post.created_at.strftime("%Y年%m月%d日 %I:%M") %></span>
                         </div>
                     </article>
@@ -48,7 +52,7 @@
             </section>
 
             <div class="w-fit mx-auto mb-2">
-                <%= image_tag @post.cover_image.variant(resize_to_limit: [640, nil]) %>
+                <%= image_tag @post.cover_image.variant(resize_to_limit: [640, nil]) if @post.cover_image.attached? %>
                 <!-- 將影像縮小到符合指定尺寸，同時保留原始長寬比。僅當影像大於指定尺寸時才會縮放影像。 -->
             </div>
 
@@ -62,15 +66,16 @@
                 <%= link_to "#", data: { action:"post#addLove", slug: @post.slug } do %>
                 <!--  slug: @post.slug為哪一篇文章按愛心 要在哪一篇文章資料的愛心欄位加數字 -->
                 <!--  <a data-action="post#addLove" data-slug="文章標題" href="#"> -->
-                    <i class="loveButton fa-brands fa-gratipay text-rose-400 mr-0.5 text-xl hover:text-rose-500"></i>
+                    <i class="loveButton fa-brands fa-gratipay text-rose-400 mr-0.5 text-2xl hover:text-rose-500"></i>
                 <% end %>
-                <span class="loveCount text-gray-500" data-post-target="loveCount"><%= @post.love %></span>
-                <span class="text-gray-500 text-lg">・</span>
-                <i class="fa-solid fa-comment text-gray-400 text-xl mr-1"></i>
-                <span class="text-gray-500"><%= @post.comments.count %>・</span>
+                <span class="loveCount text-gray-500 text-xl" data-post-target="loveCount"><%= @post.love %></span>
+                <span class="text-gray-500 text-xl">・</span>
+                <i class="fa-solid fa-comment text-gray-400 text-2xl mr-1"></i>
+                <span class="text-gray-500 text-xl"><%= @post.comments.count %></span>
+                <span class="text-gray-500 text-xl">・</span>
                 <!-- 要做流程控制變換顏色 -->
-                <i class="fa-solid fa-bookmark text-sky-500 text-xl mr-1"></i>
-                <span class="text-gray-500">0</span>
+                <i class="fa-solid fa-bookmark text-sky-500 text-2xl mr-1"></i>
+                <span class="text-gray-500 text-xl">0</span>
             </footer>
 
             <div class="text-gray-500">共 <%= @post.comments.count %> 則留言</div>

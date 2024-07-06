@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import PostController from "./post_controller"
 application.register("post", PostController)
+
+import UserController from "./user_controller"
+application.register("user", UserController)

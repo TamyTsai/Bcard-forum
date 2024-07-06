@@ -17,17 +17,33 @@ Rails.application.routes.draw do
   root "pages#index"
 
   resources :posts do
+
+    # 為文章按愛心功能 的 api
+    # love_post     POST   /posts/:id/love(.:format)    posts#love
     member do
       post :love
-      # love_post     POST   /posts/:id/love(.:format)    posts#love
-      # 為文章按愛心功能 的 api
     end
+
+    # 文章留言
+    # /posts/:post_id/comments/:id
     resources :comments, only: [:create, :edit, :update, :destroy]
     # post_comments     POST   /posts/:post_id/comments(.:format)                  comments#create
     # edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format)         comments#edit
     # post_comment      PATCH  /posts/:post_id/comments/:id(.:format)              comments#update
     #                   PUT    /posts/:post_id/comments/:id(.:format)              comments#update
     # post_comment      DELETE /posts/:post_id/comments/:id(.:format)              comments#destroy
+
+  end
+
+  resources :users, only: [] do
+    # 想要網址帶users 但users的CRUD都被devise做完，所以這裡給空陣列，單純用來生成 追蹤使用者功能 的 api路徑
+
+    # 追蹤使用者功能 的 api
+    # follow_user    POST   /users/:id/follow(.:format)         users#follow
+    member do
+      post :follow
+    end
+
   end
 
   # 單篇文章頁面

@@ -77,7 +77,7 @@ class PostsController < ApplicationController
         # destroy 動作會從資料庫中擷取文章（before action），並呼叫 destroy。然後，它會將瀏覽器重新導向到 文章列表頁，狀態碼為 303 另尋他處。
     end
 
-    def love
+    def love # 為文章按愛心功能 api
     #  love_post     POST   /posts/:id/love(.:format)    posts#love
         if user_signed_in? # 在這裡檢查使用者是否有登入 有登入才能按文章愛心
             # 先找到按哪篇文章的愛心

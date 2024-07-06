@@ -50,10 +50,12 @@ class CommentsController < ApplicationController
 
     def find_post # 找出要被留言的 文章
         @post = Post.friendly.find(params[:post_id])
+        # /posts/:post_id/comments/:id(.:format)
     end
 
     def find_comment # 找出文章下的特定留言
         @comment = @post.comments.find(params[:id])
+        # /posts/:post_id/comments/:id(.:format)
     end
 
 end
