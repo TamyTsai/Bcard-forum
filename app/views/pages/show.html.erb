@@ -78,7 +78,9 @@
             <%= render 'comment_input', post: @post, comment: @comment %>
 
             <!-- 所有留言區 -->
-            <%= render partial: 'comment', collection: @comments %>
+            <section class="comment-list">
+                <%= render partial: 'comment', collection: @comments %>
+            </section>
             <!-- https://molu.in/blog/rails-partial_render-locals-collection/ -->
             <!-- 有「collection: 」前面「partial: 」就不能省略 -->
             <!-- collection 除了可以像 locals 做到將 實體變數 轉為 區域變數，還順便幫我們把 each 迴圈做完了。 -->

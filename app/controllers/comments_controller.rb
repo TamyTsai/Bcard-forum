@@ -8,6 +8,9 @@ class CommentsController < ApplicationController
     before_action :find_post, only: [:create, :edit, :update, :destroy]
 
     def create
+        # 會去views底下找同名檔案 comments>create.js.erb
+        # 沒有寫redirect to，所以表單送出後會去找create.js.erb執行js（因為有form_with remote: true）
+
         # 先找出要被留言的文章（before action）
 
         # 於post model 設定 has_many :comments 後可以寫成
@@ -17,10 +20,14 @@ class CommentsController < ApplicationController
         @comment.user = current_user # 寫下留言的使用者，為當前登入的使用者
         # comment belongs to user
 
-        if @comment.save
-            render js: "alert('留言建立成功')"
-            # js 為 javascript
-        else
+        # if @comment.save
+        #     # render js: "alert('留言建立成功')"
+        #     # js 為 javascript
+        # else
+        #     render js: "alert('留言建立失敗')"
+        # end
+
+        unless @comment.save
             render js: "alert('留言建立失敗')"
         end
 

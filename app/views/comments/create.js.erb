@@ -1,0 +1,10 @@
+var list = document.querySelector('section.comment-list')
+//  <section class="comment-list">
+var renderContent = "<%= j(render 'pages/comment', comment: @comment) %>"
+// j為rails view help 可將ruby轉換為javascript
+list.innerHTML = renderContent + list.innerHTML
+// 抓到整個留言區區塊後 將個別留言區塊放到 整個留言區區塊 的 最前面
+
+document.querySelector('form.comment_form').reset()
+//  <form class="comment_form" ....
+// 送出後清空輸入表單
