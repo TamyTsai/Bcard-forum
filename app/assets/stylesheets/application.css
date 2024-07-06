@@ -10,16 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+
  *= require_tree .
  * 會把所有引進來後再編譯
-
- *= require bulma/bulma.css
- *前面的vendor/assets/stylesheets都省略
 
  * 要引入 同目錄 的 其他檔案 時
  * require 檔案名稱
 
+ *= require bulma/bulma.css
+ *前面的vendor/assets/stylesheets都省略
+
+ *= require fontawesome-free-6.5.2-web/css/all.min.css
+
+ *= require tailwindcss/tailwind.css
+
  *= require_self
+
  */
 
 /* 全站都會用到的css（用asset pipeline打包） */

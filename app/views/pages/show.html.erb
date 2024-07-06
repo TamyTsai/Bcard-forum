@@ -58,19 +58,22 @@
             <!-- <p class='description'>內文</p> -->
             <!-- https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format -->
 
-            <div class="columns mt-2">
+            <footer class="columns mt-2">
                 <div class="column">
                     <i class="fa-brands fa-gratipay text-rose-400 mr-0.5 text-2xl"></i>
-                    <span class="text-gray-500">0</span>
+                    <span class="loveCount text-gray-500">0</span>
                     <span class="text-gray-500 text-lg">・留言</span>
                     <span class="text-gray-500"><%= @post.comments.count %></span>
                 </div>
                 <div class="column text-right">
                     <!-- 要做流程控制變換顏色 -->
-                    <i class="fa-brands fa-gratipay text-rose-400 mr-4 text-2xl"></i>
+                    <%= link_to "#" do %>
+                        <i class="loveButton fa-brands fa-gratipay text-rose-400 mr-4 text-2xl"></i>
+                    <% end %>
                     <i class="fa-solid fa-bookmark text-sky-500 text-2xl"></i>
                 </div>
-            </div>
+            </footer>
+
             <div class="text-gray-500">共 <%= @post.comments.count %> 則留言</div>
             <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
           
