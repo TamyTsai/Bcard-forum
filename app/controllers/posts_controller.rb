@@ -3,15 +3,11 @@
 class PostsController < ApplicationController
 
     # 驗證使用者有登入 才能用post相關頁面 不然就踢到登入頁面
-    before_action :authenticate_user!, except: [:love]
+    before_action :authenticate_user!
     # 後面還可以接only 或 except
-    # 讓未登入者不要一按愛心就跳到登入頁
 
     before_action :find_post, only: [:edit, :update, :destroy]
     # rails 7.1後only except裡面不能寫還沒寫的action，但可以改變設定：`config.action_controller.raise_on_missing_callback_actions` to `false`.
-
-    skip_before_action :verify_authenticity_token, only: [:love]
-    # 表單透過api打來這時 不檢查token
 
     def index
         # @posts = current_user.posts.order(created_at: :desc).where(deleted_at: nil)
@@ -75,20 +71,6 @@ class PostsController < ApplicationController
         @post.destroy # 使用paranoia套件後，此處的destroy方法 已經 不會把資料直接從資料庫 抹除
         redirect_to posts_path, notice: '文章已刪除', status: :see_other
         # destroy 動作會從資料庫中擷取文章（before action），並呼叫 destroy。然後，它會將瀏覽器重新導向到 文章列表頁，狀態碼為 303 另尋他處。
-    end
-
-    def love # 為文章按愛心功能 api
-    #  love_post     POST   /posts/:id/love(.:format)    posts#love
-        if user_signed_in? # 在這裡檢查使用者是否有登入 有登入才能按文章愛心
-            # 先找到按哪篇文章的愛心
-            post = Post.friendly.find(params[:id])
-            post.increment!(:love)
-            # 將posts資料表love欄位的值+1
-            # increment! 驚嘆號 直接寫進資料庫 不用save兩段式
-            render json: {status: post.love} # 要傳給前端controller的資料（json格式）
-        else
-            render json: {status: '先登入才能按愛心喔'}
-        end
     end
 
     private

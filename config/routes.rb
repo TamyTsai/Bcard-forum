@@ -16,14 +16,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#index"
 
+  # 文章CRUD
   resources :posts do
-
-    # 為文章按愛心功能 的 api
-    # love_post     POST   /posts/:id/love(.:format)    posts#love
-    member do
-      post :love
-    end
-
     # 文章留言
     # /posts/:post_id/comments/:id
     resources :comments, only: [:create, :edit, :update, :destroy]
@@ -32,18 +26,6 @@ Rails.application.routes.draw do
     # post_comment      PATCH  /posts/:post_id/comments/:id(.:format)              comments#update
     #                   PUT    /posts/:post_id/comments/:id(.:format)              comments#update
     # post_comment      DELETE /posts/:post_id/comments/:id(.:format)              comments#destroy
-
-  end
-
-  resources :users, only: [] do
-    # 想要網址帶users 但users的CRUD都被devise做完，所以這裡給空陣列，單純用來生成 追蹤使用者功能 的 api路徑
-
-    # 追蹤使用者功能 的 api
-    # follow_user    POST   /users/:id/follow(.:format)         users#follow
-    member do
-      post :follow
-    end
-
   end
 
   # 單篇文章頁面
@@ -66,6 +48,30 @@ Rails.application.routes.draw do
   # 創作者排行榜
   # rank_page   GET    /rank(.:format)      pages#rank
   get 'rank', to: 'pages#rank', as: 'rank_page'
+
+  # api相關路徑
+  namespace :api do
+    namespace :v1 do
+
+      # 追蹤使用者功能 的 api
+      # follow_api_v1_user    POST   /api/v1/users/:id/follow(.:format)       api/v1/users#follow
+      resources :users, only: [] do
+      # 想要網址帶users 但users的CRUD都被devise做完，所以這裡給空陣列，單純用來生成 追蹤使用者功能 的 api路徑
+        member do
+          post :follow
+        end
+      end
+
+      # 為文章按愛心功能 的 api
+      # love_api_v1_post   POST   /api/v1/posts/:id/love(.:format)    api/v1/posts#love
+      resources :posts, only: [] do
+        member do
+          post :love
+        end
+      end
+
+    end
+  end
 
 
 

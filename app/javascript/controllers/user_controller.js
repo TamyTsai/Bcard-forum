@@ -16,8 +16,8 @@ export default class extends Controller {
         let target = this.followButtonTarget
         // 要被變動顯示內容 的html元素
 
-        axios.post(`/users/${user}/follow`)
-        // follow_user    POST   /users/:id/follow(.:format)          users#follow
+        axios.post(`/api/v1/users/${user}/follow`)
+        // follow_api_v1_user    POST   /api/v1/users/:id/follow(.:format)       api/v1/users#follow
             .then(function(response){
                 
                 let status = response.data.status 

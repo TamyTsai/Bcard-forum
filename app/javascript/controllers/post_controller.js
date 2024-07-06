@@ -18,18 +18,19 @@ export default class extends Controller {
     let target = this.loveCountTarget
     // 要被變動顯示內容 的html元素
 
-    axios.post(`/posts/${slug}/love`) // ES6
-    // love_post     POST   /posts/:id/love(.:format)    posts#love
+    axios.post(`/api/v1/posts/${slug}/love`) // ES6
+    // love_api_v1_post   POST   /api/v1/posts/:id/love(.:format)    api/v1/posts#love
         .then(function(response){
             let status = response.data.status 
             // 後端controller（posts#love）傳過來的資料
             // render json: {status: post.love} 或 render json: {status: '使用者未登入'}
             switch (status) {
-                case '先登入才能按愛心喔':
-                    alert(status);
+                case '使用者未登入':
+                    alert('先登入才能按愛心喔');
                     break;
                 default:
                     target.innerHTML = status;
+                    // render json: {status: post.love} 
                     break;
             }
         })
