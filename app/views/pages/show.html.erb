@@ -58,18 +58,20 @@
             <!-- <p class='description'>內文</p> -->
             <!-- https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format -->
 
-            <footer class="columns mt-2">
+            <footer class="columns mt-2" data-controller="post">
                 <div class="column">
                     <i class="fa-brands fa-gratipay text-rose-400 mr-0.5 text-2xl"></i>
-                    <span class="loveCount text-gray-500">0</span>
+                    <span class="loveCount text-gray-500" data-post-target="loveCount">0</span>
                     <span class="text-gray-500 text-lg">・留言</span>
                     <span class="text-gray-500"><%= @post.comments.count %></span>
                 </div>
                 <div class="column text-right">
-                    <!-- 要做流程控制變換顏色 -->
-                    <%= link_to "#" do %>
-                        <i class="loveButton fa-brands fa-gratipay text-rose-400 mr-4 text-2xl"></i>
+                    <%= link_to "#", data: { action:"post#addLove", slug: @post.slug } do %>
+                    <!--  slug: @post.slug為哪一篇文章按愛心 要再哪一篇文章資料的愛心欄位加數字 -->
+                    <!--  <a data-action="post#addLove" data-slug="文章標題" href="#"> -->
+                        <i class="loveButton fa-brands fa-gratipay text-rose-400 mr-4 text-2xl hover:text-rose-500"></i>
                     <% end %>
+                    <!-- 要做流程控制變換顏色 -->
                     <i class="fa-solid fa-bookmark text-sky-500 text-2xl"></i>
                 </div>
             </footer>

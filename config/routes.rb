@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   root "pages#index"
 
   resources :posts do
+    member do
+      post :love
+      # love_post     POST   /posts/:id/love(.:format)    posts#love
+    end
     resources :comments, only: [:create, :edit, :update, :destroy]
     # post_comments     POST   /posts/:post_id/comments(.:format)                  comments#create
     # edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format)         comments#edit
@@ -47,6 +51,8 @@ Rails.application.routes.draw do
   get 'rank', to: 'pages#rank', as: 'rank_page'
 
 
+
+  # -------------------------------------------
   # 文章
   # resources :posts do
   #   resources :comments, only: [:create] # 每篇文章下會有很多留言，直接把留言路徑資源做在文章下
