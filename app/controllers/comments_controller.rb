@@ -2,10 +2,11 @@
 
 class CommentsController < ApplicationController
 
-    # 驗證使用者有登入 才能用post相關頁面 不然就踢到登入頁面
+    # 驗證使用者有登入 才能用留言相關頁面、功能 不然就踢到登入頁面
     before_action :authenticate_user!
 
     before_action :find_post, only: [:create, :edit, :update, :destroy]
+    before_action :find_comment, only: [:edit, :update, :destroy]
 
     def create
         # 會去views底下找同名檔案 comments>create.js.erb
@@ -26,11 +27,8 @@ class CommentsController < ApplicationController
         # else
         #     render js: "alert('留言建立失敗')"
         # end
-
-        unless @comment.save
-            render js: "alert('留言建立失敗')"
-        end
-
+        
+        render js: "alert('留言建立失敗')" unless @comment.save
     end
 
     def edit
@@ -40,17 +38,22 @@ class CommentsController < ApplicationController
     end
 
     def destroy
+        @comment.destroy
+        redirect_to post_comment_path, notice: '留言已刪除', status: :see_other
     end
 
     private
 
-    def comment_params # 資料清洗
+    def comment_params # 留言表單 資料清洗
         params.require(:comment).permit(:content)
     end
 
-    def find_post
+    def find_post # 找出要被留言的 文章
         @post = Post.friendly.find(params[:post_id])
-        # 找出要被留言的文章
+    end
+
+    def find_comment # 找出文章下的特定留言
+        @comment = @post.comments.find(params[:id])
     end
 
 end
