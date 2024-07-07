@@ -33,20 +33,20 @@
                             <span class="text-gray-500">・</span>
                             <%= link_to '#', data: { action: "user#follow", user: @post.user.id } do %>
                             <!-- <a data-action="user#follow" data-user="1" href="#"> -->
-                                <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">
-                                    <%= (user_signed_in? && current_user.follow?(@post.user))? '追蹤中' : '追蹤' %>
-                                </span>
-                                <!-- <span data-user-target="followButton">
-                                    < if user_signed_in? && current_user.follow?(@post.user) %>
+                                <!-- <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">
+                                    <= (user_signed_in? && current_user.follow?(@post.user))? '追蹤中' : '追蹤' %>
+                                </span> -->
+                                <span data-user-target="followButton">
+                                    <% if user_signed_in? && current_user.follow?(@post.user) %>
                                         <span class="followButton text-gray-500 hover:text-gray-400" >
                                             追蹤中
                                         </span>
-                                    < else %>
+                                    <% else %>
                                         <span class="followButton text-sky-500 hover:text-sky-400" >
                                             追蹤
                                         </span>
-                                    < end %>
-                                </span> -->
+                                    <% end %>
+                                </span>
                             <% end %>
                             <span class="text-gray-500">・<%= @post.created_at.strftime("%Y年%m月%d日 %I:%M") %></span>
                         </div>
@@ -88,18 +88,18 @@
                 <i class="fa-solid fa-comment text-gray-400 text-2xl mr-1"></i>
                 <span class="text-gray-500 text-xl"><%= @post.comments.count %></span>
                 <span class="text-gray-500 text-xl">・</span>
-                <!-- <span data-controller="user"> -->
-                    <%= link_to "#", data: { action:"post#bookmark", slug: @post.slug } do %>
-                    <!--  slug: @post.slug要收藏哪一篇文章 -->
-                    <!--  <a data-action="post#bookmark" data-slug="文章標題" href="#"> -->
-                        <% if user_signed_in? && @post.bookmark?(current_user) %>
-                            <i class="bookmarkButton fa-solid fa-bookmark text-sky-500 text-2xl mr-1" data-post-target="bookmark"></i>
-                        <% else %>
-                            <i class="bookmarkButton fa-solid fa-bookmark text-gray-400 text-2xl mr-1 hover:text-sky-500" data-post-target="bookmark"></i>
-                        <% end %>
+
+                <%= link_to "#", data: { action:"post#bookmark", slug: @post.slug } do %>
+                <!--  slug: @post.slug要收藏哪一篇文章 -->
+                <!--  <a data-action="post#bookmark" data-slug="文章標題" href="#"> -->
+                    <% if user_signed_in? && @post.bookmark?(current_user) %>
+                        <i class="bookmarkButton fa-solid fa-bookmark text-sky-500 text-2xl mr-1" data-post-target="bookmark"></i>
+                    <% else %>
+                        <i class="bookmarkButton fa-solid fa-bookmark text-gray-400 text-2xl mr-1 hover:text-sky-500" data-post-target="bookmark"></i>
                     <% end %>
-                    <span class="text-gray-500 text-xl" data-post-target="bookmarkCount"><%= @post.bookmarks.count %></span>
-                <!-- </span> -->
+                <% end %>
+                <span class="text-gray-500 text-xl" data-post-target="bookmarkCount"><%= @post.bookmarks.count %></span>
+
             </footer>
 
             <div class="text-gray-500">共 <%= @post.comments.count %> 則留言</div>

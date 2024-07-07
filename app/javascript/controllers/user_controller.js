@@ -32,9 +32,13 @@ export default class extends Controller {
                     case '已取消追蹤':
                         target.innerHTML = '追蹤'; // innerHTML對html元素內容的置換可以及時顯示，不用重新整理頁面
                         // alert('已取消追蹤');
+                        target.classList.add('text-sky-500', 'hover:text-sky-400');
+                        target.classList.remove('text-gray-500', 'hover:text-gray-400');
                         break;
                     case '已追蹤':
                         target.innerHTML = '追蹤中';
+                        target.classList.add('text-gray-500', 'hover:text-gray-400');
+                        target.classList.remove('text-sky-500', 'hover:text-sky-400');
                         break;
                 }
             })
