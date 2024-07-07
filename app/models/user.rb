@@ -15,11 +15,13 @@ class User < ApplicationRecord
   # 每個用戶可有多篇文章
   has_many :follows # follows為資料表名稱
   # 每個用戶可有多位追蹤者
+  has_many :bookmarks
+  # 每個用戶可收藏多篇文章
   has_one_attached :avatar
   # 每個使用者可以上傳一個頭貼
 
   # 實體方法
-  def follow?(user) # 有無追蹤user  # 作用在 使用者實體 上 的 實體方法
+  def follow?(user) # 使用者 有無追蹤 某user  # 作用在 使用者實體 上 的 實體方法
     # follows.where(following: user) # 會回傳陣列 比較浪費資源
     follows.exists?(following: user)
     # 在follows表格中 傳進來的參數user 是否存在於 following欄位 中

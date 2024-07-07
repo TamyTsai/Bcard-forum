@@ -91,10 +91,14 @@
                 <!-- <span data-controller="user"> -->
                     <%= link_to "#", data: { action:"post#bookmark", slug: @post.slug } do %>
                     <!--  slug: @post.slug要收藏哪一篇文章 -->
-                    <!--  <a data-action="post#bookmark" data-slug="文章照片" href="#"> -->
-                        <i class="bookmarkButton fa-solid fa-bookmark text-gray-400 text-2xl mr-1 hover:text-sky-500" data-post-target="bookmark"></i>
+                    <!--  <a data-action="post#bookmark" data-slug="文章標題" href="#"> -->
+                        <% if user_signed_in? && @post.bookmark?(current_user) %>
+                            <i class="bookmarkButton fa-solid fa-bookmark text-sky-500 text-2xl mr-1" data-post-target="bookmark"></i>
+                        <% else %>
+                            <i class="bookmarkButton fa-solid fa-bookmark text-gray-400 text-2xl mr-1 hover:text-sky-500" data-post-target="bookmark"></i>
+                        <% end %>
                     <% end %>
-                    <span class="text-gray-500 text-xl">0</span>
+                    <span class="text-gray-500 text-xl" data-post-target="bookmarkCount"><%= @post.bookmarks.count %></span>
                 <!-- </span> -->
             </footer>
 

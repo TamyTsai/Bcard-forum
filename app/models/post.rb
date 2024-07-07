@@ -24,6 +24,8 @@ class Post < ApplicationRecord
   # 動態長出 user 與 user= 方法
   has_many :comments
   # 動態長出 comments comments= build create 方法
+  has_many :bookmarks
+  # 動態長出 bookmarks bookmarks= build create 方法
   has_one_attached :cover_image
   # 每篇文章都可以有一個封面照片
   # Active Storage
@@ -49,6 +51,23 @@ class Post < ApplicationRecord
   #   update(deleted_at: Time.now)
   # end
   # 改用paranoia套件
+  def bookmark?(user) # 文章 有無被 某user 收藏  # 作用在 文章實體 上 的 實體方法
+    bookmarks.exists?(user: user)
+    # 在bookmarks表格中 傳進來的參數user 是否存在於 user_id欄位 中
+    # 回傳布林值
+  end
+
+  def bookmark!(user) # 被user收藏或取消收藏
+    # 到資料表改資料
+    if bookmark?(user) # 已經被收藏->取消收藏
+      bookmarks.find_by(user: user).destroy
+      # 找到bookmarks資料表中 user_id欄位值 為 傳入之參數user 的資料 並刪除
+      return '已被取消收藏'
+    else # 還沒被收藏->被收藏
+      bookmarks.create(user: user)
+      return '已被收藏'
+    end
+  end
 
   def normalize_friendly_id(input) # babosa方法 轉換文字編碼
     input.to_s.to_slug.normalize(transliterations: :russian).to_s

@@ -26,7 +26,7 @@ export default class extends Controller {
                 // render json: {status: '已取消追蹤'} 或 render json: {status: '已追蹤'}
                 switch (status) {
                     case '使用者未登入':
-                    // 後端controller： render json: {status: '先登入才能追蹤該用戶喔'} 
+                    // 後端controller： render json: {status: '使用者未登入'} 
                         alert('先登入才能追蹤該用戶喔');
                         break;
                     case '已取消追蹤':
