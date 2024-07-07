@@ -62,7 +62,6 @@ Rails.application.routes.draw do
         end
       end
 
-
       resources :posts, only: [] do
         member do
           # 為文章按愛心功能 的 api

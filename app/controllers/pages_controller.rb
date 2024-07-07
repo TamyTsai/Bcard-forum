@@ -31,6 +31,12 @@ class PagesController < ApplicationController
     end
 
     def user # 單一使用者文章列表
+        @user = User.find_by(username: params[:username])
+        # 從網址給的資訊 找出特定使用者
+        # 找出users資料表中username欄位值為 params[:username] key所對應值 的使用者資料
+        # Parameters: {"username"=>"carrychen"}
+        # https://stackoverflow.com/questions/34523422/params-to-find-by-name-instead-of-id
+        @posts = @user.posts.published.order(created_at: :desc)
     end
 
     def hot # 熱門文章 # 按照文章愛心數排序 已發佈文章
@@ -38,9 +44,11 @@ class PagesController < ApplicationController
     end
 
     def rank # 創作者列表 # 按照帳號建立新舊時間排序
-        # @ranks = current_user.with_attached_avatar.order(follows.count: :desc).includes(:user)
+        # @user = User.find_by(username: params[:username])
+        # @ranks = @user.with_attached_avatar.order(follows.count: :desc)
         # @ranks = User.with_attached_avatar.order(created_at: :desc).includes(:user)
         @ranks = User.with_attached_avatar.order(created_at: :desc)
+
     end
 
     private

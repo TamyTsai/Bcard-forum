@@ -4,74 +4,80 @@
         <section class="column is-12 bg-neutral-100 my-4 rounded p-14">
             <div>
                 <!-- 頭貼 -->
-                <% if current_user.avatar.attached? %>
-                    <%= image_tag current_user.avatar.variant(resize_to_fill: [150, 150]), class: 'avatar' %>
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar.variant(resize_to_fill: [150, 150]), class: 'avatar' %>
                 <% else %>
                     <i class="fa-solid fa-circle-user text-gray-500 text-9xl"></i>
                 <% end %>
             </div>
             <div class="columns">
                 <div class="column">
-                    <!-- 有卡稱 顯示卡稱+ID，沒卡稱 就只顯示ID（參考rank頁面邏輯判斷寫法） -->
-                    <div class="text-lg font-bold mt-2">卡稱</div>
-                    <div class="text-gray-400">@ID</div>
-                    <span class="text-gray-400">119篇文章</span>
-                    <span class="text-gray-400">・5022人追蹤</span>
+                    <!-- 有卡稱 顯示卡稱+ID，沒卡稱 就只顯示ID -->
+                    <% if @user.cardname != nil %>
+                        <div class="text-lg font-bold mt-2"><%= @user.cardname %></div>
+                        <div class="text-gray-400">@<%= @user.username %></div>
+                    <% else %>
+                        <div class="text-lg mt-2">@<%= @user.username %></div>
+                    <% end %> 
+                    <span class="text-gray-400"><%= @user.posts.published.count %>篇已發佈文章</span>
+                    <span class="text-gray-400">・<%= @user.follows.count %>人追蹤</span>
                 </div>
                 <div class="column text-right">
                     <a href="#" class="button bgc-light-blue text-white mt-5">追蹤</a>
                 </div>
             </div>
             <div class="text-gray-500 mb-2">
-                個人簡介......
+                <%= @user.intro %>
             </div>
             <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
-            <div class="bg-white rounded-xl p-5 mb-5">
-                <p class="text-gray-500 text-sm mb-1.5">2024年7月0日</p>
-                <!-- post.created_at.strftime("%Y年%m月%d日")  -->
-                <div class="bg-white rounded-xl p-5 mb-5">
-                    <section class="columns mb-0">
-                        <section class="column is-12">
-                            <article class="media">
-                                <figure class="media-left mr-2">
-                                    <img src="https://fakeimg.pl/25x25/" class="avatar">
-                                    <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
-                                    <!-- <= if user.avatar.attached? %>  
-                                         image_tag user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' 
-                                     <= else %>  
-                                        <i class="fa-solid fa-circle-user text-gray-500 text-2xl"></i>
-                                     <= end %>    -->
-                                </figure>
-                                <div class="media-content">
-                                    <!-- ID -->
-                                    <span class="text-gray-500">@ID</span>
-                                    <!-- <span class="text-gray-500">@<%= current_user.username %></span> -->
-                                    <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
-                                    <span>
-                                        <span class="text-gray-500">・卡稱</span>
-                                        <!-- <= if current_user.cardname !=nil %>
-                                            <span class="text-gray-500">・<%= current_user.cardname %></span>
-                                        <= else %>
-                                        <= end %>  -->
-                                    </span>
-                                </div>
-                            </article>
-                        </section>
-                    </section>
-                    <span class="text-xl font-bold">文章標題</span>
-                    <!-- <span class="text-xl font-bold"><= link_to post.title, post_page_path(post.user.username, post) %></span> -->
-                    <p>文章內文</p>
-                    <!-- <p><= post.content %></p> -->
-                    <div class="mt-2.5">
-                        <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
-                        <span class="text-gray-400 mr-4">0</span>
-                        <i class="fa-solid fa-comment text-sky-500 mr-0.5"></i>
-                        <span class="text-gray-400 mr-4">0</span>
-                        <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
-                        <span class="text-gray-400 mr-4">0</span>
+
+            <% if @user.posts.published.count == 0 %>
+                <div class="text-lg text-gray-500 text-center">該使用者目前無已發佈文章！</div>
+            <% else %>
+                <% @posts.each do |post| %>
+                    <p class="text-gray-500 text-sm mb-1.5"><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+                    <div class="bg-white rounded-xl p-5 mb-5">
+                        <div class="bg-white rounded-xl p-5 mb-5">
+                            <section class="columns mb-0">
+                                <section class="column is-12">
+                                    <article class="media">
+                                        <figure class="media-left mr-2">
+                                            <!-- <img src="https://fakeimg.pl/25x25/" class="avatar"> -->
+                                            <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                                            <% if post.user.avatar.attached? %>
+                                                <%= image_tag post.user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' %>  
+                                            <% else %>  
+                                                <i class="fa-solid fa-circle-user text-gray-500 text-2xl"></i>
+                                            <% end %>   
+                                        </figure>
+                                        <div class="media-content">
+                                            <!-- ID -->
+                                            <span class="text-gray-500">@<%= post.user.username %></span>
+                                            <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
+                                            <span>
+                                                <% if post.user.cardname !=nil %>
+                                                    <span class="text-gray-500">・<%= post.user.cardname %></span>
+                                                <% else %>
+                                                <% end %> 
+                                            </span>
+                                        </div>
+                                    </article>
+                                </section>
+                            </section>
+                            <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                            <p><%= post.content %></p>
+                            <div class="mt-2.5">
+                                <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
+                                <span class="text-gray-400 mr-4"><%= post.love %></span>
+                                <i class="fa-solid fa-comment text-gray-400 mr-0.5"></i>
+                                <span class="text-gray-400 mr-4"><%= post.comments.count %></span>
+                                <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
+                                <span class="text-gray-400 mr-4"><%= post.bookmarks.count %></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                <% end %>
+            <% end %>
         </section>
     </section>
 </div>
