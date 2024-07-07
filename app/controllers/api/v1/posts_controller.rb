@@ -14,4 +14,9 @@ class Api::V1::PostsController < Api::V1::BaseController
 
     end
 
+    def bookmark # 收藏文章功能 api
+    # bookmark_api_v1_post    POST   /api/v1/posts/:id/bookmark(.:format)      api/v1/posts#bookmark
+        render json: {status: 'good'}
+    end
+
 end

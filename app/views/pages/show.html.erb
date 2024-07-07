@@ -88,9 +88,14 @@
                 <i class="fa-solid fa-comment text-gray-400 text-2xl mr-1"></i>
                 <span class="text-gray-500 text-xl"><%= @post.comments.count %></span>
                 <span class="text-gray-500 text-xl">・</span>
-                <!-- 要做流程控制變換顏色 -->
-                <i class="fa-solid fa-bookmark text-sky-500 text-2xl mr-1"></i>
-                <span class="text-gray-500 text-xl">0</span>
+                <!-- <span data-controller="user"> -->
+                    <%= link_to "#", data: { action:"post#bookmark", slug: @post.slug } do %>
+                    <!--  slug: @post.slug要收藏哪一篇文章 -->
+                    <!--  <a data-action="post#bookmark" data-slug="文章照片" href="#"> -->
+                        <i class="bookmarkButton fa-solid fa-bookmark text-gray-400 text-2xl mr-1 hover:text-sky-500" data-post-target="bookmark"></i>
+                    <% end %>
+                    <span class="text-gray-500 text-xl">0</span>
+                <!-- </span> -->
             </footer>
 
             <div class="text-gray-500">共 <%= @post.comments.count %> 則留言</div>

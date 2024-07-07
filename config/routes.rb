@@ -62,11 +62,15 @@ Rails.application.routes.draw do
         end
       end
 
-      # 為文章按愛心功能 的 api
-      # love_api_v1_post   POST   /api/v1/posts/:id/love(.:format)    api/v1/posts#love
+
       resources :posts, only: [] do
         member do
+          # 為文章按愛心功能 的 api
+          # love_api_v1_post   POST   /api/v1/posts/:id/love(.:format)    api/v1/posts#love
           post :love
+          # 收藏文章功能 的 api
+          # bookmark_api_v1_post    POST   /api/v1/posts/:id/bookmark(.:format)      api/v1/posts#bookmark
+          post :bookmark
         end
       end
 

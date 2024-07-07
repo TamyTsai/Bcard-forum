@@ -3,7 +3,7 @@ import axios from 'axios'
 // 會去找node_modules裡的東西
 
 export default class extends Controller {
-  static targets = [ "loveCount" ]
+  static targets = [ "loveCount", "bookmark" ]
 
   addLove(event) {
     event.preventDefault();
@@ -27,6 +27,37 @@ export default class extends Controller {
             switch (status) {
                 case '使用者未登入':
                     alert('先登入才能按愛心喔');
+                    break;
+                default:
+                    target.innerHTML = status;
+                    // render json: {status: post.love} 
+                    break;
+            }
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+  }
+
+  bookmark(event) {
+    event.preventDefault();
+
+    let slug = event.currentTarget.dataset.slug
+    // <a data-action="post#bookmark" data-slug="文章照片" href="#">
+    // 這樣就可以 抓到 data-slug屬性 的 值"文章標題"，抓到就可以拿來塞在要打的api路徑中，才知道是要收藏哪篇文章
+
+    let target = this.bookmarkTarget
+    // 要被變動顯示內容 的html元素
+
+    axios.post(`/api/v1/posts/${slug}/bookmark`)
+    // bookmark_api_v1_post    POST   /api/v1/posts/:id/bookmark(.:format)      api/v1/posts#bookmark
+        .then(function(response){
+            let status = response.data.status 
+            // 後端controller（posts#bookmark）傳過來的資料
+            // render json: {status: post.love} 或 render json: {status: '使用者未登入'}
+            switch (status) {
+                case '使用者未登入':
+                    alert('先登入才能收藏文章喔');
                     break;
                 default:
                     target.innerHTML = status;
