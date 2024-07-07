@@ -37,9 +37,10 @@ class PagesController < ApplicationController
         @posts = Post.published_posts_love
     end
 
-    def rank # 創作者排行榜 # 按照被追蹤數顯示使用者
-        # 等有追蹤欄位後修改
-        @ranks = User.all
+    def rank # 創作者列表 # 按照帳號建立新舊時間排序
+        # @ranks = current_user.with_attached_avatar.order(follows.count: :desc).includes(:user)
+        # @ranks = User.with_attached_avatar.order(created_at: :desc).includes(:user)
+        @ranks = User.with_attached_avatar.order(created_at: :desc)
     end
 
     private

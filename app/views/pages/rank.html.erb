@@ -7,7 +7,7 @@
 
         <!-- 中間欄位-創作者列表 -->
         <section class="column is-7 bg-white my-4 rounded p-14">
-            <h1 class="text-2xl font-semibold">創作者排行榜</h1>
+            <h1 class="text-2xl font-semibold">創作者列表</h1>
             <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700">
             <% if User.count == 0 %> <!-- 若論壇 用戶數量 為0的話 -->
                 <div class="text-center my-28">
@@ -18,7 +18,8 @@
                 <% @ranks.each do |user| %>
                     <section class="columns">
                         <section class="column is-1">
-                            <i class="fa-solid fa-crown text-yellow-500 text-xl pt-8"></i>
+                            <!-- <i class="fa-solid fa-crown text-yellow-500 text-xl pt-8"></i> -->
+                            <i class="fa-solid fa-pen-nib text-gray-500 text-xl pt-9"></i>
                         </section>
                         <section class="column is-6">
                             <article class="media mt-5">
