@@ -41,8 +41,8 @@ class Post < ApplicationRecord
   scope :published_posts_created_at, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
   # published為aasm送的方法，能撈出所有 狀態欄位 值 為published的文章
 
-  # 按 愛心數順序 顯示的 已發佈文章（待修改）
-  scope :published_posts_love, -> { published.with_attached_cover_image.order(updated_at: :desc).includes(:user) }
+  # 按 愛心數順序 顯示的 已發佈文章
+  scope :published_posts_love, -> { published.with_attached_cover_image.order(love: :desc).includes(:user) }
   
 
   # 實體方法（belongs_to是類別方法）
