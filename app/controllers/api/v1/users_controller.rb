@@ -14,7 +14,7 @@ class Api::V1::UsersController < Api::V1::BaseController
         # 先找到要追蹤哪個使用者 # before action已做
 
         # 修改資料表欄位值
-        render json: {status: current_user.follow!(@user)} # 要傳給前端controller的資料（json格式）
+        render json: {status: current_user.follow!(@user), count: Follow.where(following_id: @user).count} # 要傳給前端controller的資料（json格式）
         # current_user.follow!(@user) return '已取消追蹤' or '已追蹤'
 
     end

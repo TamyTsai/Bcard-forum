@@ -21,7 +21,11 @@
                     <% end %> 
                     <span class="text-gray-400"><%= @user.posts.published.count %>篇已發佈文章</span>
                     <span class="text-gray-400">・正在追蹤<%= @user.follows.count %>人</span>
-                    <span class="text-gray-400">・<%= @follow_count %>位粉絲</span>
+                    <span data-controller="user">
+                        <span class="text-gray-400">・</span>
+                        <span class="text-gray-400" data-user-target="followCount"><%= @follow_count %></span>
+                        <span class="text-gray-400">位粉絲</span>
+                    </span>
                 </div>
                 <div class="column text-right" data-controller="user">
                     <%= link_to '#', data: { action: "user#followBig", user: @user.id } do %>
