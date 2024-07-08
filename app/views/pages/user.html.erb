@@ -64,8 +64,22 @@
                                     </article>
                                 </section>
                             </section>
-                            <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-                            <p><%= post.content %></p>
+                            <!-- 有上傳封面照片就顯示 照片和內文，沒上傳就只顯示內文 -->
+                            <% if post.cover_image.attached? %>
+                                <div class="columns">
+                                    <div class="column is-10">
+                                        <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                                        <p><%= strip_tags(post.content).truncate(70) %></p>
+                                    </div>
+                                    <div class="column is-2">
+                                        <%= image_tag post.cover_image.variant(resize_to_fill: [150, 150]), class:'rounded-xl' %>
+                                    </div>
+                                </div>
+                            <% else %>
+                                <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                                <p><%= strip_tags(post.content).truncate(70) %></p>
+                            <% end %>
+
                             <div class="mt-2.5">
                                 <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
                                 <span class="text-gray-400 mr-4"><%= post.love %></span>

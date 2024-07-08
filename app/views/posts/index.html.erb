@@ -53,11 +53,26 @@
                                             <% end %>
                                         </section>
                                     </section>
-                                    <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-                                    <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
-                                    <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
-                                    <p><%= post.content %></p>
-                                    <!-- <p>最後編輯時間：<%= time_ago_in_words(post.updated_at) %>前</p> -->
+
+                                    <!-- 有上傳封面照片就顯示 照片和內文，沒上傳就只顯示內文 -->
+                                    <% if post.cover_image.attached? %>
+                                        <div class="columns">
+                                            <div class="column is-10">
+                                                <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                                                <!-- <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.status == 'published' %>-->
+                                                <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
+                                                <p><%= strip_tags(post.content).truncate(60) %></p>
+                                            </div>
+                                            <div class="column is-2">
+                                                <%= image_tag post.cover_image.variant(resize_to_fill: [150, 150]), class:'rounded-xl' %>
+                                            </div>
+                                        </div>
+                                    <% else %>
+                                        <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
+                                        <%= content_tag :span, '已發佈', class: 'tag bgc-light-blue text-white ml-1 mb-1' if post.published? %>
+                                        <p><%= strip_tags(post.content).truncate(60) %></p>
+                                    <% end %>
+
                                     <div class="mt-2.5">
                                         <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
                                         <span class="text-gray-400 mr-4"><%= post.love %></span>
