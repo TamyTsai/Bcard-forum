@@ -11,7 +11,8 @@ class My::ProfilesController < ApplicationController
     end
 
     def following
-        # @users =
+        # @users = current_user.follows.with_attached_avatar.order(created_at: :desc)
+        @users = current_user.follows.order(created_at: :desc)
     end
 
 end

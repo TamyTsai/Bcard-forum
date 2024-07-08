@@ -1,0 +1,71 @@
+<div class="bgc-dark-blue min-h-screen">
+    <div class="max-w-5xl m-auto">
+        <section class="columns pt-4">
+            <%= render 'posts/shared/profile-left' %>
+            <section class="column is-9">
+                <div class="bg-neutral-100 rounded-2xl px-14 pt-5 pb-12 mb-5">
+                    <h1 class="text-2xl font-semibold">我追蹤的使用者</h1>
+                    <hr class="h-px mt-5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                    <br>
+                    <% if current_user.follows.count == 0 %> <!-- 若當前登入的使用者 追蹤之使用者數量為0的話 -->
+                        <div class="text-center my-28">
+                            <p class="text-xl">尚無已追蹤之使用者</p>
+                        </div>
+                    <% else %> <!-- 若當前登入的使用者 追蹤之使用者數量為0的話 -->
+                        <% @users.each do |user| %>
+                            <section class="columns">
+                                <section class="column is-7">
+                                    <article class="media mt-5">
+                                        <figure class="media-left">
+                                            <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                                            <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
+                                            <% if user.following.avatar.attached? %>
+                                                <%= image_tag user.following.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
+                                            <% else %>
+                                                <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
+                                            <% end %>
+                                        </figure>
+                                        <div class="media-content">
+                                            <!-- 有卡稱 顯示卡稱+ID，沒卡稱 就只顯示ID -->
+                                            <% if user.following.cardname != nil %>
+                                                <%= link_to user.following.cardname, user_page_path(user.following.username) %><br>
+                                                <%= link_to "@#{user.following.username}", user_page_path(user.following.username), class:'text-gray-400 text-sm' %>
+                                            <% else %>
+                                                <%= link_to user_page_path(user.following.username) do %>
+                                                    <div class="text-gray-600 pt-2.5">@<%= user.following.username %></div>
+                                                <% end %>
+                                            <% end %>                                
+                                        </div>
+                                    </article>
+                                </section>
+                                <section class="column is-5" data-controller="user">
+                                    <%= link_to '#', data: { action: "user#followBig", user: user.following.id } do %>
+                                        <% if user_signed_in? && current_user.follow?(user.following) %>
+                                            <div class="text-right">
+                                                <span class="button mt-5 bg-gray-300 hover:bg-white" data-user-target="followButtonBig" >
+                                                    追蹤中
+                                                </span>
+                                            </div>
+                                        <% else %>
+                                            <div class="text-right">
+                                                <span class="button mt-5 bgc-light-blue text-white hover:bg-sky-400" data-user-target="followButtonBig" >
+                                                    追蹤
+                                                </span>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                </section>
+                            </section>
+                        <% end %>
+                    <% end %>
+                </div>
+    
+            </section>
+        </section>
+    </div>
+</div>
+
+
+
+
+
