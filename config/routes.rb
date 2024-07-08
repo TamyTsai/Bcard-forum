@@ -73,6 +73,10 @@ Rails.application.routes.draw do
         end
       end
 
+      # 用Froala editor上傳圖片功能 的 api
+      # api_v1_upload_image    POST   /api/v1/upload_image(.:format)        api/v1/utils#upload_image
+      post :upload_image, to: 'utils#upload_image'
+
     end
   end
 

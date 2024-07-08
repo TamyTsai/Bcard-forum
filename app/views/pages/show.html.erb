@@ -71,8 +71,9 @@
                 <!-- 將影像縮小到符合指定尺寸，同時保留原始長寬比。僅當影像大於指定尺寸時才會縮放影像。 -->
             </div>
 
-            <p><%= simple_format(@post.content, class: 'description') %></p>
-            <!-- simple_format 讓換行和超連結 正確呈現 -->
+            <p><%= @post.content.html_safe %></p>
+            <!-- <p><= simple_format(@post.content, class: 'description') %></p> -->
+            <!-- simple_format 讓換行和超連結 正確呈現，但會吃掉froala editor的css文字顏色等 -->
             <!-- 使用 class: 'description'方便css選取其 以操縱換行與換行間的間距（換行兩次的段落間 會各自被各自的標籤包住） -->
             <!-- <p class='description'>內文</p> -->
             <!-- https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format -->
