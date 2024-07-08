@@ -11,5 +11,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "froala-editor": "^4.2.1"
   }
 }

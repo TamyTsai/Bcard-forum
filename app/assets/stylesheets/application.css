@@ -12,7 +12,7 @@
  *
 
  *= require_tree .
- * 會把所有引進來後再編譯
+ * 會把stylesheets下的所有檔案引進來
 
  * 要引入 同目錄 的 其他檔案 時
  * require 檔案名稱
@@ -21,6 +21,7 @@
  *前面的vendor/assets/stylesheets都省略
 
  *= require fontawesome-free-6.5.2-web/css/all.min.css
+ * vendor/assets/stylesheets下
 
  *= require tailwindcss/tailwind.css
 

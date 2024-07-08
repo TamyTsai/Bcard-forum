@@ -665,6 +665,11 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+froala-editor@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-4.2.1.tgz#cbede1eaf673bf782baf2286ca63ebba128e74d9"
+  integrity sha512-Ov8XdJpP6X+hernpF89CzkDHBiXEsBzFUX2ftmG2QLw+2ZqiK2RirUbUy2IABxBXZrBzHgzm8GZyZ5rd+cAU5Q==
+
 fsevents@~2.3.2:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"

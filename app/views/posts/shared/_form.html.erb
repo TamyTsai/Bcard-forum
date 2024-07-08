@@ -40,7 +40,7 @@
     
     <div class="mb-5">
         <!-- 建立表單之前 先建model -->
-        <%= form_for(post) do |form| %>
+        <%= form_for(post, html: {class: 'post-editor'}) do |form| %>
             <div class="field">
                 <%= image_tag post.cover_image.variant(resize_to_fit: [500, 300]), class:'mb-4 w-fit mx-auto' if post.cover_image.attached? %>
                 <!-- 將影像縮放至符合指定尺寸，同時保留原始長寬比。如果影像大於指定尺寸，將縮小影像；如果小於，則放大影像。 -->
@@ -68,8 +68,9 @@
     </div> 
 
 </div>
+
     
-    
-    
+<!-- <= javascript_include_tag "editor" %>   -->
+
     
     
