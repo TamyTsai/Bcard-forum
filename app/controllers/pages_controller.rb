@@ -37,6 +37,7 @@ class PagesController < ApplicationController
         # Parameters: {"username"=>"carrychen"}
         # https://stackoverflow.com/questions/34523422/params-to-find-by-name-instead-of-id
         @posts = @user.posts.published.order(created_at: :desc)
+        @follow_count = Follow.where(following_id: @user).count
     end
 
     def hot # 熱門文章 # 按照文章愛心數排序 已發佈文章
