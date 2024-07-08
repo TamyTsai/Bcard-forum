@@ -84,7 +84,7 @@
                                 <div class="columns">
                                     <div class="column is-10">
                                         <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-                                        <p><%= strip_tags(post.content).truncate(70) %></p>
+                                        <p><%= strip_tags(post.content).truncate(60) %></p>
                                     </div>
                                     <div class="column is-2">
                                         <%= image_tag post.cover_image.variant(resize_to_fill: [150, 150]), class:'rounded-xl' %>
@@ -92,7 +92,7 @@
                                 </div>
                             <% else %>
                                 <span class="text-xl font-bold"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-                                <p><%= strip_tags(post.content).truncate(70) %></p>
+                                <p><%= strip_tags(post.content).truncate(60) %></p>
                             <% end %>
 
                             <div class="mt-2.5">

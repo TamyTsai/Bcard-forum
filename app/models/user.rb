@@ -11,7 +11,7 @@ class User < ApplicationRecord
   # Username has already been taken
   
   # 資料表間的關聯
-  has_many :posts
+  has_many :posts, dependent: :destroy # 刪除使用者時，其所寫之文章也需要被刪除
   # 每個用戶可有多篇文章
   has_many :follows # follows為資料表名稱
   # 每個用戶可有多位追蹤者

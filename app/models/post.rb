@@ -22,9 +22,9 @@ class Post < ApplicationRecord
   # 資料間關聯
   belongs_to :user
   # 動態長出 user 與 user= 方法
-  has_many :comments
+  has_many :comments, dependent: :destroy # 刪除一篇文章，其相關的留言也需要被刪除，否則它們只會佔用資料庫空間
   # 動態長出 comments comments= build create 方法
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   # 動態長出 bookmarks bookmarks= build create 方法
   has_one_attached :cover_image
   # 每篇文章都可以有一個封面照片
