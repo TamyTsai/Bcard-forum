@@ -76,6 +76,18 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :my do
+    # 個人資料首頁：我的收藏
+    # my_root   GET    /my(.:format     my/profile#collections
+    root 'profiles#collections'
+    # 我的收藏
+    # my_collections_page    GET    /my/collections(.:format)           my/profile#collections
+    get 'collections', to: 'profiles#collections', as: 'collections_page'
+    # 我的追蹤的使用者
+    # my_following_page   GET    /my/following(.:format)            my/profile#following
+    get 'following', to: 'profiles#following', as: 'following_page'
+  end
+
 
 
   # -------------------------------------------

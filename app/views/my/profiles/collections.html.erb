@@ -1,0 +1,87 @@
+<div class="bgc-dark-blue min-h-screen">
+    <div class="max-w-5xl m-auto">
+        <section class="columns pt-4">
+            <%= render 'posts/shared/profile-left' %>
+            <section class="column is-9">
+                <div class="bg-neutral-100 rounded-2xl px-14 pt-5 pb-12 mb-5">
+                    <h1 class="text-2xl font-semibold">我的收藏</h1>
+                    <hr class="h-px mt-5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                    <br>
+                    <% if current_user.bookmarks.count == 0 %> <!-- 若當前登入的使用者 收藏之文章數量為0的話 -->
+                        <div class="text-center my-28">
+                            <p class="text-xl">尚無已收藏之文章</p>
+                        </div>
+                    <% else %> <!-- 若當前登入的使用者 收藏之文章數量為0的話 -->
+                        <% @bookmarks.each do |bookmark| %>
+                            <p class="text-gray-500 text-sm mb-1.5"><%= bookmark.created_at.strftime("%Y年%m月%d日") %></p>
+                            <div class="bg-white rounded-xl p-5 mb-5">
+                                <section class="columns mb-0">
+                                    <section class="column is-12">
+                                        <article class="media">
+                                            <figure class="media-left mr-2">
+                                                <!-- <img src="https://fakeimg.pl/25x25/" class="avatar"> -->
+                                                <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                                                <% if bookmark.post.user.avatar.attached? %>
+                                                    <%= image_tag bookmark.post.user.avatar.variant(resize_to_fill: [25, 25]), class: 'avatar' %>
+                                                <% else %>
+                                                    <i class="fa-solid fa-circle-user text-gray-500 text-2xl"></i>
+                                                <% end %>
+                                            </figure>
+                                            <div class="media-content">
+                                                <!-- ID -->
+                                                <span class="text-gray-500">@<%= link_to bookmark.post.user.username, user_page_path(bookmark.post.user.username) %></span>
+                                                <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
+                                                <span>
+                                                    <% if bookmark.post.user.cardname !=nil %>
+                                                        <span class="text-gray-500">・<%= link_to bookmark.post.user.cardname, user_page_path(bookmark.post.user.username) %></span>
+                                                    <% else %>
+                                                    <% end %>
+                                                </span>
+                                            </div>
+                                        </article>
+                                    </section>
+                                </section>
+
+                                <!-- 有上傳封面照片就顯示 照片和內文，沒上傳就只顯示內文 -->
+                                <% if bookmark.post.cover_image.attached? %>
+                                    <div class="columns">
+                                        <div class="column is-10">
+                                            <span class="text-xl font-bold"><%= link_to bookmark.post.title, post_page_path(bookmark.post.user.username, bookmark.post) %></span>
+                                            <p><%= strip_tags(bookmark.post.content).truncate(60) %></p>
+                                        </div>
+                                        <div class="column is-2">
+                                            <%= image_tag bookmark.post.cover_image.variant(resize_to_fill: [150, 150]), class:'rounded-xl' %>
+                                        </div>
+                                    </div>
+                                <% else %>
+                                    <% if bookmark.post.published? %> <!-- 已收藏文章若被文章作者下架 -->
+                                        <span class="text-xl font-bold"><%= link_to bookmark.post.title, post_page_path(bookmark.post.user.username, bookmark.post) %></span>
+                                        <p><%= strip_tags(bookmark.post.content).truncate(60) %></p>
+                                    <% else %>
+                                        <span class="text-xl font-bold text-gray-400"><%= bookmark.post.title %>（已下架）</span>
+                                        <p class="text-gray-400">(作者已下架本篇文章，故無法讀取內容)</p>
+                                    <% end %>
+                                <% end %>
+
+                                <div class="mt-2.5">
+                                    <i class="fa-brands fa-gratipay text-rose-400 mr-0.5"></i>
+                                    <span class="text-gray-400 mr-4"><%= bookmark.post.love %></span>
+                                    <i class="fa-solid fa-comment text-gray-400 mr-0.5"></i>
+                                    <span class="text-gray-400 mr-4"><%= bookmark.post.comments.count %></span>
+                                    <i class="fa-solid fa-bookmark text-sky-500 mr-0.5"></i>
+                                    <span class="text-gray-400 mr-4"><%= bookmark.post.bookmarks.count %></span>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+    
+            </section>
+        </section>
+    </div>
+</div>
+
+
+
+
+

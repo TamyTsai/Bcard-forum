@@ -32,11 +32,11 @@
                                                 </figure>
                                                 <div class="media-content">
                                                     <!-- ID -->
-                                                    <span class="text-gray-500">@<%= current_user.username %></span>
+                                                    <span class="text-gray-500">@<%= link_to current_user.username, user_page_path(current_user.username) %></span>
                                                     <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
                                                     <span>
                                                         <% if current_user.cardname !=nil %>
-                                                            <span class="text-gray-500">・<%= current_user.cardname %></span>
+                                                            <span class="text-gray-500">・<%= link_to current_user.cardname, user_page_path(current_user.username) %></span>
                                                         <% else %>
                                                         <% end %>
                                                     </span>
