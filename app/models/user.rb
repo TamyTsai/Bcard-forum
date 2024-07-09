@@ -6,9 +6,6 @@ class User < ApplicationRecord
 
   # 寫進資料庫前的後端驗證
   validates :username, presence: :true, uniqueness: true
-  # 重複的話 頁面會跳：
-  # 1 error prohibited this user from being saved:
-  # Username has already been taken
   
   # 資料表間的關聯
   has_many :posts, dependent: :destroy # 刪除使用者時，其所寫之文章也需要被刪除

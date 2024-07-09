@@ -19,7 +19,6 @@
                         <div class="media-content">
                             <!-- ID -->
                             <span class="text-gray-500">@<%= link_to @post.user.username, user_page_path(@post.user.username) %></span>
-                            <!-- <span class="text-gray-500">@< link_to post.user.username, user_page_path(post.user.username) %></span> -->
 
                             <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
                             <span>
@@ -27,12 +26,10 @@
                                     <span class="text-gray-500">・<%= link_to @post.user.cardname, user_page_path(@post.user.username) %></span>
                                 <% else %>
                                 <% end %>
-                                <!-- <span class="text-gray-500">・<= link_to @post.user.cardname, user_page_path(@post.user.username) %></span> -->
                             </span>
 
                             <span class="text-gray-500">・</span>
                             <%= link_to '#', data: { action: "user#follow", user: @post.user.id } do %>
-                            <!-- <a data-action="user#follow" data-user="1" href="#"> -->
                                 <!-- <span class="followButton text-sky-500 hover:text-sky-400" data-user-target="followButton">
                                     <= (user_signed_in? && current_user.follow?(@post.user))? '追蹤中' : '追蹤' %>
                                 </span> -->
@@ -72,11 +69,6 @@
             </div>
 
             <p><%= @post.content.html_safe %></p>
-            <!-- <p><= simple_format(@post.content, class: 'description') %></p> -->
-            <!-- simple_format 讓換行和超連結 正確呈現，但會吃掉froala editor的css文字顏色等 -->
-            <!-- 使用 class: 'description'方便css選取其 以操縱換行與換行間的間距（換行兩次的段落間 會各自被各自的標籤包住） -->
-            <!-- <p class='description'>內文</p> -->
-            <!-- https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-simple_format -->
 
             <footer class="mt-7 mb-5" data-controller="post">
                 <%= link_to "#", data: { action:"post#addLove", slug: @post.slug } do %>
@@ -113,13 +105,6 @@
             <section class="comment-list">
                 <%= render partial: 'comment', collection: @comments %>
             </section>
-            <!-- https://molu.in/blog/rails-partial_render-locals-collection/ -->
-            <!-- 有「collection: 」前面「partial: 」就不能省略 -->
-            <!-- collection 除了可以像 locals 做到將 實體變數 轉為 區域變數，還順便幫我們把 each 迴圈做完了。 -->
-            <!-- 使用 collection 需要許多的巧合：
-            1.局部渲染的檔名（_user.html.erb）必須 以 那包資料(@users)的「單數」命名。
-            2.局部渲染的檔案必須放在同個資料夾層級。
-            3.局部渲染檔案內的區域變數必須是單數（user）。 -->
 
         </section>
     </section>

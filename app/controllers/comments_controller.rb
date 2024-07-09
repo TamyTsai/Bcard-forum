@@ -14,19 +14,8 @@ class CommentsController < ApplicationController
 
         # 先找出要被留言的文章（before action）
 
-        # 於post model 設定 has_many :comments 後可以寫成
         @comment = @post.comments.new(comment_params)
-        # 可對post實體使用comments方法
-
         @comment.user = current_user # 寫下留言的使用者，為當前登入的使用者
-        # comment belongs to user
-
-        # if @comment.save
-        #     # render js: "alert('留言建立成功')"
-        #     # js 為 javascript
-        # else
-        #     render js: "alert('留言建立失敗')"
-        # end
         
         render js: "alert('留言建立失敗')" unless @comment.save
     end

@@ -27,16 +27,12 @@
 
             <!-- vs  form_for(post) do |form| -->
             <%= form_with model: @comment, url: post_comment_path(@post, @comment), class: 'comment_form', remote: true, data: {turbo: true, turbo_method: :put} do |form| %>
-            <!-- model: 物件 -->
             <!-- post_comment   PUT  /posts/:post_id/comments/:id(.:format)              comments#update -->
             <!-- remote: true 預設為開啟 使用AJAX方法在背後傳資料 -->
-            <!-- data: {turbo: true} ？-->
                 <%= form.text_area :content, rows: 5, class: 'textarea' %>
                 <div class="text-right">
                     <%= link_to "取消", post_page_path(@post.user.username, @post), class: 'button bg-zinc-200 my-2' %>
-                    <!-- <= link_to "取消", :back, class: 'button bg-zinc-200 my-2' %> -->
                     <%= form.submit "送出", class: 'button bgc-light-blue text-white my-2' %>
-                    <!-- form.button "送出", class: 'button bgc-light-blue text-white my-2' -->
                 </div>
             <% end %>
             <% else %>

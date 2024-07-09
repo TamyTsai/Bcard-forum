@@ -27,12 +27,7 @@
         </div>
     </article>
 
-    <!-- vs  form_for(post) do |form| -->
     <%= form_with model: comment, url: post_comments_path(post), class: 'comment_form', remote: true, data: {turbo: true}  do |form| %>
-    <!-- model: 物件 -->
-    <!-- post_comments    POST   /posts/:post_id/comments(.:format)       comments#create -->
-    <!-- remote: true 預設為開啟 使用AJAX方法在背後傳資料 -->
-    <!-- data: {turbo: true} ？-->
         <%= form.text_area :content, rows: 5, class: 'textarea' %>
         <div class="text-right">
             <%= form.submit "送出", class: 'button bgc-light-blue text-white my-2' %>

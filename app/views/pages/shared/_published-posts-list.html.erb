@@ -20,9 +20,7 @@
                 <div class="media-content">
                     <!-- ID -->
                     <span class="text-gray-500">@<%= link_to post.user.username, user_page_path(post.user.username) %></span>
-                    <!-- 點擊 ID或卡稱 進入 單一使用者文章列表
-                        /@ID
-                        user_page   GET    /@:username(.:format)           pages#user -->
+                    <!-- 點擊 ID或卡稱 進入 單一使用者文章列表 -->
 
                     <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
                     <span>
@@ -40,14 +38,9 @@
                 <div class="columns">
                     <div class="column is-10">
                         <span class="text-xl font-bold pb-6"><%= link_to post.title, post_page_path(post.user.username, post) %></span>
-                        <!-- 點擊文章標題 進入單篇文章頁面
-                        # /@ID/文章標題-123
-                        # post_page    GET    /@:username/:post_id(.:format)        pages#show
-                        post_page_path(文章作者的username, 文章id) -->
-                        <!-- 因為post model 有設定 belongs_to :user 所以有user實體方法可以用-->
+                        <!-- 點擊文章標題 進入單篇文章頁面 -->
                         <p><%= strip_tags(post.content).truncate(70) %></p>
-                        <!-- strip_tags 拔掉html標籤 -->
-                        <!-- truncate節短文字 -->
+                        <!-- strip_tags 拔掉html標籤 truncate截短文字 -->
                     </div>
                     <div class="column is-2">
                         <!-- <img src="https://fakeimg.pl/150/" class="rounded-xl"> -->

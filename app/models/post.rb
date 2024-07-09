@@ -31,11 +31,6 @@ class Post < ApplicationRecord
   # Active Storage
 
   # 搜尋條件範圍
-  # default_scope { where(deleted_at: nil) } ＃改用paranoia套件
-  # 系統中所有查詢都會套用此篩選
-  # 3.0.0 :002 > Post.all
-  # Post Load (0.6ms)  SELECT "posts".* FROM "posts" WHERE "posts"."deleted_at" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
-
   scope :published_posts, -> { where(status: 'published') }
   # 按 建立順序 顯示的 已發佈文章
   scope :published_posts_created_at, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
@@ -45,12 +40,7 @@ class Post < ApplicationRecord
   scope :published_posts_love, -> { published.with_attached_cover_image.order(love: :desc).includes(:user) }
   
 
-  # 實體方法（belongs_to是類別方法）
-  # 覆寫既有的destroy方法（變成軟刪除）
-  # def destroy
-  #   update(deleted_at: Time.now)
-  # end
-  # 改用paranoia套件
+  # 實體方法
   def bookmark?(user) # 文章 有無被 某user 收藏  # 作用在 文章實體 上 的 實體方法
     bookmarks.exists?(user: user)
     # 在bookmarks表格中 傳進來的參數user 是否存在於 user_id欄位 中
@@ -95,10 +85,6 @@ class Post < ApplicationRecord
   end
   # 長出方法
   # draft? published? may_publish? may_unpublish? publish! unpublish!
-
-  # 直接改欄位值的話...
-  # 3.0.0 :002 > p1.update(status: 'publish')
-  # (irb):2:in `<main>': direct assignment of AASM column has been disabled (see AASM configuration for this class) (AASM::NoDirectAssignmentError)
 
   private
 

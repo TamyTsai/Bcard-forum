@@ -4,33 +4,24 @@ class PostsController < ApplicationController
 
     # 驗證使用者有登入 才能用post相關頁面 不然就踢到登入頁面
     before_action :authenticate_user!
-    # 後面還可以接only 或 except
 
     before_action :find_post, only: [:edit, :update, :destroy]
     # rails 7.1後only except裡面不能寫還沒寫的action，但可以改變設定：`config.action_controller.raise_on_missing_callback_actions` to `false`.
 
     def index
-        # @posts = current_user.posts.order(created_at: :desc).where(deleted_at: nil)
-        # 改用default scope
-
         @posts = current_user.posts.order(created_at: :desc)
     end
 
     def new # 建立文章表單頁面 對應的動作
-        # @post = Post.new
-        # 於user model 設定 has_many :posts 後可以寫成
         @post = current_user.posts.new
-        # 可對user實體（devise的current_user）使用posts方法
-        # 先找出哪個 使用者 要建立文章
     end
 
     def create # 送出建立文章表單
         @post = current_user.posts.new(post_params)
-        # @post.status = 'published' if params[:publish] 
-        # params hash中有:publish這個key的話（若使用者按發佈按鈕，就會讓params hash中有:publish這個key） 就將posts資料表status欄位值指定為published
-        # 文章status欄位預設值為draft，所以不用寫該情況
         @post.publish! if params[:publish] 
         # post model已設定no_direct_assignment: true 所以不能直接改欄位值 要用aasm的方法
+        # params hash中有:publish這個key的話（若使用者按發佈按鈕，就會讓params hash中有:publish這個key） 就將posts資料表status欄位值指定為published
+        # 文章status欄位預設值為draft，所以不用寫該情況
 
         if @post.save
             # 新增文章頁面 發佈 與 儲存為草稿 按鈕 之流程判斷
@@ -80,11 +71,5 @@ class PostsController < ApplicationController
 
     def find_post
         @post = current_user.posts.friendly.find(params[:id])
-        # find找不到時會噴exception ActiveRecord::RecordNotFound
-        # 可用bigin resue局部處理 或是提升到controller層級
-        # begin
-        #     @post = current_user.posts.find(params[:id])
-        # rescue => exception
-        # end
     end
 end

@@ -1,16 +1,10 @@
 <% if post.errors.any? %> <!-- 如果有任何錯誤訊息 -->
     <div class="notification is-danger mb-0 text-white">
         <%= post.errors.full_messages.to_sentence %>
-        <!-- <%= post.errors.full_messages.each do |msg| %>
-            <%= msg %>
-        <% end %> -->
     </div>
 <% end %>
 
 <div class="max-w-screen-md m-auto mb-2">
-    <!-- 水平置中另一個直覺思維就是使用 m-auto 自動調整左右 margin 而水平置中。但有個前提是 content 的 <div> 必須內縮與 content 同寬，m-auto 才有動態調整 margin 空間。 -->
-    <!-- w-fit：width 與 content 同寬，但仍維持其 block 特性，讓 margin: auto 有操作空間
-            m-auto：相當於同時設定 margin-left: auto、margin-right: auto，使之能自動調整左右 margin 而水平置中 -->
     <article class="media mt-5">
         <figure class="media-left">
             <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
@@ -68,9 +62,6 @@
     </div> 
 
 </div>
-
-    
-<!-- <= javascript_include_tag "editor" %>   -->
 
     
     

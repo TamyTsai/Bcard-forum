@@ -58,16 +58,8 @@ gem 'paranoia', '~> 2.6', '>= 2.6.3'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # Active Storage 的各種功能仰賴 Rails 沒有安裝的第三方軟體，必須另外安裝 libvips v8.6+ 或 ImageMagick，用於影像分析和轉換
-# 影像分析和轉換也需要 image_processing 這個 gem。
+# 影像分析和轉換也需要 image_processing 這個 gem
 gem "image_processing", "~> 1.2"
-# gem 'mini_magick', '~> 4.13', '>= 4.13.1'
-# ImageMagick (in rails < 7)、libvips (in rails >= 7)
-# https://stackoverflow.com/questions/74855530/resizing-images-with-variant-method-creates-broken-image-icon-in-rails
-# To resize images ActiveStorage uses third-party libraries, by default
-# libvips (in rails >= 7)
-# $ brew install vips
-# ImageMagick (in rails < 7)
-# $ brew install imagemagick
 
 # 開發群組
 group :development, :test do

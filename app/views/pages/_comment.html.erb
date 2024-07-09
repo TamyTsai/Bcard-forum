@@ -8,7 +8,6 @@
                     <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
                     <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
                     <% if comment.user.avatar.attached? %>
-                    <!-- comment model有設定belongs_to :user -->
                         <%= image_tag comment.user.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
                     <% else %>
                         <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
@@ -33,7 +32,6 @@
             <section class="column is-2 text-right mt-2">
                 <%= link_to edit_post_comment_path(comment.post, comment) do %>
                 <!-- edit_post_comment GET    /posts/:post_id/comments/:id/edit(.:format)         comments#edit -->
-                <!-- belongs_to :post -->
                     <i class="fa-solid fa-pen mr-2 text-gray-400"></i>
                 <% end %>
                 <%= link_to post_comment_path(comment.post, comment), data: {turbo_method: :delete, turbo_confirm: "確定刪除此留言？"}  do %>

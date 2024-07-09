@@ -2,8 +2,6 @@
 
 class Follow < ApplicationRecord
   belongs_to :user # 追蹤別人的人
-  # 效果等同 belongs_to :user, foreign_key: 'user_id', class_name: 'User'
-  # 這是rails的慣例
   belongs_to :following, foreign_key: 'following_id', class_name: 'User' # 被追蹤的人
   # 一個使用者 可以被 多個人 追蹤
   # following是一個實際上並不存在的欄位，只是為了 容易看懂 寫的
