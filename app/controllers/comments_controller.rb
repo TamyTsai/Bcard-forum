@@ -35,6 +35,12 @@ class CommentsController < ApplicationController
     end
 
     def update
+        if @comment.update(comment_params) # 若 成功更新留言
+            redirect_to post_page_path(@post.user.username, @post), notice: '留言已編輯'
+            # post_page    GET    /@:username/:post_id(.:format)      pages#show
+        else # 寫入資料庫失敗
+            render :edit, status: :unprocessable_entity # 重新顯示表單（包含錯誤訊息），方法是使用狀態碼 422 無法處理的實體 呈現 app/views/articles/edit.html.erb
+        end
     end
 
     def destroy

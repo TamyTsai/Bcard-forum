@@ -1,0 +1,53 @@
+<!-- 編輯留言頁面 -->
+
+<div class="bgc-dark-blue min-h-screen">
+    <section class="columns max-w-3xl mx-auto">
+        <section class="column is-12 bg-neutral-100 my-4 rounded px-14">
+
+            <% if @comment.user == current_user %> <!-- 留言的作者 是 當前使用者 才出現編輯留言頁面-->
+            <article class="media mt-5">
+                <figure class="media-left">
+                    <!-- 有上傳頭貼 顯示上傳的頭貼，沒頭貼 顯示灰頭 -->
+                    <!-- <img src="https://fakeimg.pl/50x50/" class="avatar"> -->
+                    <% if current_user.avatar.attached? %>
+                        <%= image_tag current_user.avatar.variant(resize_to_fill: [50, 50]), class: 'avatar' %>
+                    <% else %>
+                        <i class="fa-solid fa-circle-user text-gray-500 text-5xl"></i>
+                    <% end %>
+                </figure>
+
+                <div class="media-content">
+                    <!-- ID -->
+                    <span class="text-gray-600">@<%= current_user.username %></span>
+                    <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
+                    <span>・<%= current_user.cardname if current_user.cardname !=nil %></span>
+                    <p class="text-gray-400 text-sm mb-1.5"><%= @comment.created_at.strftime("%Y年%m月%d日 %I:%M") %></p>
+                </div>
+            </article>
+
+            <!-- vs  form_for(post) do |form| -->
+            <%= form_with model: @comment, url: post_comment_path(@post, @comment), class: 'comment_form', remote: true, data: {turbo: true, turbo_method: :put} do |form| %>
+            <!-- model: 物件 -->
+            <!-- post_comment   PUT  /posts/:post_id/comments/:id(.:format)              comments#update -->
+            <!-- remote: true 預設為開啟 使用AJAX方法在背後傳資料 -->
+            <!-- data: {turbo: true} ？-->
+                <%= form.text_area :content, rows: 5, class: 'textarea' %>
+                <div class="text-right">
+                    <%= link_to "取消", post_page_path(@post.user.username, @post), class: 'button bg-zinc-200 my-2' %>
+                    <!-- <= link_to "取消", :back, class: 'button bg-zinc-200 my-2' %> -->
+                    <%= form.submit "送出", class: 'button bgc-light-blue text-white my-2' %>
+                    <!-- form.button "送出", class: 'button bgc-light-blue text-white my-2' -->
+                </div>
+            <% end %>
+            <% else %>
+                <div class="text-center py-24">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-500 text-6xl mb-2"></i>
+                    <p class="text-lg mb-2 font-bold">你並非本篇留言的作者，不可編輯此留言！</p>
+                    <%= link_to "返回文章", post_page_path(@post.user.username, @post), class: 'button bg-zinc-200 my-2' %>
+                    <!-- post_page   GET    /@:username/:post_id(.:format)         pages#show -->
+                </div>
+            <% end %>
+
+        </section>
+    </section>
+</div>
