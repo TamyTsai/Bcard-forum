@@ -20,6 +20,12 @@
 - 使用axios串接API
 - 使用PostgreSQL資料庫儲存資料
 
+## 網站地圖（Sitemap）
+![網站地圖](https://github.com/TamyTsai/Bcard-forum/assets/97825677/48a440cb-b5e4-47bd-b6c1-51ae35170ef3)
+
+## 實體關聯圖（ERD）
+![實體關聯圖](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae5ff44a-ca00-4b7d-b219-5a82738a7ad2)
+
 ## 功能
 - 會員功能
     - 註冊頁面
