@@ -127,8 +127,59 @@
 - 於單一文章等頁面之網址文章id部分輸入不存在之文章id時，顯示頁面不存在訊息，並提供「返回首頁」按鈕
 
 
-<!-- ## 畫面
-### 瀏覽器畫面 -->
+## 畫面
+### 首頁（最新文章）
+![首頁（最新文章）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5ff1e510-d534-4409-a452-367cab7be2b2)
+
+### 熱門文章
+![熱門文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/06f7729b-4c17-4e5c-b52e-47b7409ead8d)
+
+### 創作者列表
+![創作者列表（已登入）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ef7cdd60-e91d-4cab-b2a9-3c6e3eb4f143)
+
+### 註冊
+![註冊](https://github.com/TamyTsai/Bcard-forum/assets/97825677/6e3aeeab-18e9-4308-b614-4581dbd162cf)
+
+### 登入
+![登入](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5a1a79f8-006c-432c-9441-64c590257c59)
+
+### 忘記密碼
+![忘記密碼](https://github.com/TamyTsai/Bcard-forum/assets/97825677/f4d3baaf-fc01-4731-9913-c20e1878d1a5)
+
+### 系統訊息
+![系統訊息](https://github.com/TamyTsai/Bcard-forum/assets/97825677/86d59656-5f9f-45da-bcc4-503d1c8e7df2)
+
+### 404
+![404](https://github.com/TamyTsai/Bcard-forum/assets/97825677/a3ddd465-4eb6-4472-af7a-e87cbce05549)
+
+### 個人資訊首頁（我的收藏）
+![個人資訊首頁（我的收藏）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/949d7f37-b401-4554-8c7c-68334868f905)
+
+### 我追蹤的使用者
+![我追蹤的使用者](https://github.com/TamyTsai/Bcard-forum/assets/97825677/382af8fd-9242-42f1-89e0-b7a05a14df3a)
+
+### 我的文章
+![我的文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/0aeb04c0-9b26-41ce-afad-4d570d587de8)
+
+### 我的個人資料
+![我的個人資料](https://github.com/TamyTsai/Bcard-forum/assets/97825677/704edd4b-90f5-49b7-866b-b48a89a1e63b)
+![我的個人資料2](https://github.com/TamyTsai/Bcard-forum/assets/97825677/9b08378e-c122-4e3b-a59a-9dde520fd99c)
+
+### 單一文章頁面
+![單一文章頁面](https://github.com/TamyTsai/Bcard-forum/assets/97825677/4024f215-67b4-4579-a2e3-57968215ef1e)
+
+### 單一文章頁面（留言區）
+![單一文章頁面2（留言區）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae167ba3-7384-4693-9bf8-567974205553)
+
+### 新增文章
+![新增文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/daec8556-ca62-459a-9fcc-1c1f0392a0e6)
+
+### 編輯文章
+![編輯文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/2f93a2a6-fb1e-400a-8817-abb95f413d46)
+
+### 編輯留言
+![編輯留言](https://github.com/TamyTsai/Bcard-forum/assets/97825677/e36926fa-e653-449a-95fa-3256fb9a0487)
+
 
 
 ## 安裝
