@@ -20,7 +20,7 @@ export default class extends Controller {
 
     axios.post(`/api/v1/posts/${slug}/love`) // ES6
     // love_api_v1_post   POST   /api/v1/posts/:id/love(.:format)    api/v1/posts#love
-        .then(function(response){
+        .then((response) => {
             let status = response.data.status 
             // 後端controller（posts#love）傳過來的資料
             // render json: {status: post.love} 或 render json: {status: '使用者未登入'}
@@ -34,7 +34,7 @@ export default class extends Controller {
                     break;
             }
         })
-        .catch(function(error){
+        .catch((error) => {
             console.log(error)
         })
   }
@@ -52,7 +52,7 @@ export default class extends Controller {
 
     axios.post(`/api/v1/posts/${slug}/bookmark`)
     // bookmark_api_v1_post    POST   /api/v1/posts/:id/bookmark(.:format)      api/v1/posts#bookmark
-        .then(function(response){
+        .then((response) => {
 
             // 後端controller（posts#bookmark）傳過來的資料
             let status = response.data.status
@@ -76,7 +76,7 @@ export default class extends Controller {
                     break;
             }
         })
-        .catch(function(error){
+        .catch((error) => {
             console.log(error)
         })
   }

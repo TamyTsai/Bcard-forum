@@ -18,7 +18,7 @@ export default class extends Controller {
 
         axios.post(`/api/v1/users/${user}/follow`)
         // follow_api_v1_user    POST   /api/v1/users/:id/follow(.:format)       api/v1/users#follow
-            .then(function(response){
+            .then((response) => {
                 
                 let status = response.data.status 
                 
@@ -42,7 +42,7 @@ export default class extends Controller {
                         break;
                 }
             })
-            .catch(function(error){
+            .catch((error) => {
                 console.log(error)
             })
 
@@ -60,7 +60,7 @@ export default class extends Controller {
 
         axios.post(`/api/v1/users/${user}/follow`)
         // follow_api_v1_user    POST   /api/v1/users/:id/follow(.:format)       api/v1/users#follow
-            .then(function(response){
+            .then((response) => {
                 
                 let status = response.data.status 
                 
@@ -84,7 +84,7 @@ export default class extends Controller {
                         break;
                 }
             })
-            .catch(function(error){
+            .catch((error) => {
                 console.log(error)
             })
     }
@@ -102,7 +102,7 @@ export default class extends Controller {
 
         axios.post(`/api/v1/users/${user}/follow`)
         // follow_api_v1_user    POST   /api/v1/users/:id/follow(.:format)       api/v1/users#follow
-            .then(function(response){
+            .then((response) => {
                 
                 // 後端controller（users#follow）傳過來的資料
                 let status = response.data.status // render json: {status: '已取消追蹤'} 或 render json: {status: '已追蹤'}
@@ -129,7 +129,7 @@ export default class extends Controller {
                         break;
                 }
             })
-            .catch(function(error){
+            .catch((error) => {
                 console.log(error)
             })
     }
