@@ -11,7 +11,7 @@
 - 使用Rails框架製作網頁
 - 前端檔案中，CSS檔案以Asset Pipeline打包，JavaScript檔案以Webpack打包
 - 使用includes與with_attached語法，解決資料庫撈資料時的N+1問題
-- 使用Active Storage處理圖檔上傳功能，並使用image processing及libvips處理上傳後之圖檔
+- 使用Active Storage處理圖檔上傳功能，並使用image processing及libvips處理上傳後之圖檔（libvips較ImageMagick快上10倍，且消耗的記憶體為1/10）
 - 使用Froala editor製作文章之文字編輯器
 - 使用devise套件製作會員系統功能，並客製化
 - 使用aasm（act as state machine）有限狀態機控制文章狀態
