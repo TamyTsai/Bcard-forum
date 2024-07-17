@@ -120,48 +120,79 @@
 ## 專案畫面與功能介紹
 ### 首頁（最新文章）
 按文章新舊顯示文章
+
 ![首頁（最新文章）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5ff1e510-d534-4409-a452-367cab7be2b2)
+
+<hr>
 
 ### 熱門文章
 按文章愛心數多寡顯示文章
+
 ![熱門文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/06f7729b-4c17-4e5c-b52e-47b7409ead8d)
+
+<hr>
 
 ### 創作者列表
 可以看到本論壇已註冊之會員，並追蹤他們！
+
 ![創作者列表（已登入）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ef7cdd60-e91d-4cab-b2a9-3c6e3eb4f143)
+
+<hr>
 
 ### 創作者個人頁面
 自己或其他使用者的個人頁面，呈現這位用戶的追蹤與被追蹤人數，及發佈了哪些文章
+
 ![image](https://github.com/user-attachments/assets/cb3194b1-6bb8-4b8c-a7d1-a32961beb2b2)
 ![image](https://github.com/user-attachments/assets/e70d1b7e-eaaa-4700-ad6e-444a78fe5527)
 
+<hr>
+
 ### 個人資訊首頁（我的收藏）
 顯示自己收藏了哪些文章（遭作者下架的文章則無法點擊觀看內文）
+
 ![個人資訊首頁（我的收藏）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/949d7f37-b401-4554-8c7c-68334868f905)
+
+<hr>
 
 ### 我追蹤的使用者
 顯示自己追蹤了哪些人
+
 ![我追蹤的使用者](https://github.com/TamyTsai/Bcard-forum/assets/97825677/382af8fd-9242-42f1-89e0-b7a05a14df3a)
+
+<hr>
 
 ### 我的文章
 顯示自己的文章列表（含未發佈及已發佈）
+
 ![我的文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/0aeb04c0-9b26-41ce-afad-4d570d587de8)
+
+<hr>
 
 ### 我的個人資料
 更改自己的個人資料
+
 ![我的個人資料](https://github.com/TamyTsai/Bcard-forum/assets/97825677/704edd4b-90f5-49b7-866b-b48a89a1e63b)
+
+<hr>
 
 ### 單一文章頁面
 - 如果為自己的文章，則可進行編輯及刪除
 - 可以對文章按愛心、收藏文章或追蹤作者
+
 ![單一文章頁面](https://github.com/TamyTsai/Bcard-forum/assets/97825677/4024f215-67b4-4579-a2e3-57968215ef1e)
+
+<hr>
 
 ### 單一文章頁面（留言區）
 如果為自己的留言，則可進行編輯及刪除
+
 ![單一文章頁面2（留言區）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae167ba3-7384-4693-9bf8-567974205553)
+
+<hr>
 
 ### 新增、編輯文章
 不只可以上傳文章封面照片，內文也可以再上傳其他圖片
+
 ![新增文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/daec8556-ca62-459a-9fcc-1c1f0392a0e6)
 ![編輯文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/2f93a2a6-fb1e-400a-8817-abb95f413d46)
 
