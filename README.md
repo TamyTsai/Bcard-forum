@@ -152,7 +152,8 @@
 ![我的個人資料](https://github.com/TamyTsai/Bcard-forum/assets/97825677/704edd4b-90f5-49b7-866b-b48a89a1e63b)
 
 ### 單一文章頁面
-如果為自己的文章，則可進行編輯及刪除
+- 如果為自己的文章，則可進行編輯及刪除
+- 可以對文章按愛心、收藏文章或追蹤作者
 ![單一文章頁面](https://github.com/TamyTsai/Bcard-forum/assets/97825677/4024f215-67b4-4579-a2e3-57968215ef1e)
 
 ### 單一文章頁面（留言區）
