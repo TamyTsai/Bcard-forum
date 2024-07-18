@@ -345,7 +345,7 @@ http://localhost:3000/
     - babosa v2.0.0
     - paranoia v2.6.3
     - axios v1.7.2
-- PostergreSQL v1.5.6
+- PostgreSQL v1.5.6
 - node v22.2.0
 - yarn v1.22.22
 - webpack v5.92.1 -->
@@ -353,7 +353,7 @@ http://localhost:3000/
 ## 專案技術
 - 前端：Bulma、Tailwind CSS、Stimulus.js
 - 後端：Ruby on Rails
-- 資料庫：PostergreSQL
+- 資料庫：PostgreSQL
 - 版本控制：Git
 
 <!-- - 前端語言：HTML、CSS、JavaScript-->
