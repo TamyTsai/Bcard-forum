@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
   # 友善ID套件
   extend FriendlyId
-  # friendly_id :要被當作slug用的欄位名稱, use: :slugged
+  # friendly_id :給friendly id 用的slug, use: :slugged
   friendly_id :slug_post , use: :slugged
 
   # 軟刪除套件
