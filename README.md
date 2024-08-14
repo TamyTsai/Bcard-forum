@@ -351,7 +351,7 @@ http://localhost:3000/
 - webpack v5.92.1 -->
 
 ## 專案技術
-- 前端：Bulma、Tailwind CSS、Stimulus.js
+- 前端：HTML、Bulma、Tailwind CSS、Stimulus.js
 - 後端：Ruby on Rails
 - 資料庫：PostgreSQL
 - 版本控制：Git
@@ -364,11 +364,10 @@ http://localhost:3000/
 - 以HTML、CSS、JavaScript及Ruby撰寫，為動態網頁
 - 設計模式（design pattern）採用MVC架構
 - 圖示部分使用Font Awesome，以方便控制大小顏色等設定
-- 使用Bulma美化頁面，並達RWD效果
-- 使用Tailwind CSS樣式設計頁面
+- 使用Bulma及Tailwind CSS設計頁面
 - 使用ES6使JavaScript語法變得簡潔（箭頭函式、以let定義變數等）
 - 追蹤、愛心、收藏等功能運用AJAX技術，提升使用者體驗
-- 使用Stimulus框架
+- 前端無複雜邏輯，故使用輕量化Stimulus框架
 - 使用Rails框架製作網頁
 - 前端檔案中，CSS檔案以Asset Pipeline打包，JavaScript檔案以Webpack打包
 - 使用includes與with_attached語法，解決資料庫撈資料時的N+1問題
