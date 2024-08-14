@@ -27,7 +27,7 @@ class PostsController < ApplicationController
             # 新增文章頁面 發佈 與 儲存為草稿 按鈕 之流程判斷
             if params[:publish] # 若按下 發佈按鈕
                 redirect_to posts_path, notice: '文章發佈成功'
-            else # 若按下 儲存為草稿按鈕
+            else # 若按下 儲存按鈕
                 redirect_to edit_post_path(@post), notice: '文章已儲存為草稿'
             end 
         else
