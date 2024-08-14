@@ -49,7 +49,7 @@ class PostsController < ApplicationController
             when params[:unpublish] # 若按下 文章下架按鈕
                 @post.unpublish!
                 redirect_to posts_path, notice: '文章已下架'
-            else # 若按下 儲存為草稿按鈕
+            else # 若按下 儲存按鈕
                 redirect_to edit_post_path(@post), notice: '文章已儲存'
             end
         else # 寫入資料庫失敗
