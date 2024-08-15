@@ -374,7 +374,7 @@ http://localhost:3000/
 - 使用Active Storage處理圖檔上傳功能，並使用image processing及libvips處理上傳後之圖檔（libvips較ImageMagick快上10倍，且消耗的記憶體為1/10）
 - 使用Froala editor製作文章之文字編輯器
 - 使用devise套件製作會員系統功能，並客製化
-- 使用aasm（act as state machine）有限狀態機控制文章狀態
+- 使用aasm（act as state machine）有限狀態機控制文章狀態，將低資料受非預期修改之機率
 - 使用friendly id套件，美化網址顯示，並達避免洩漏過多資訊之效果；另使用babosa套件，讓文章標題可以中文顯示在網址中
 - 使用paranoia套件，讓文章及留言之刪除功能為軟刪除
 - 使用axios串接API
