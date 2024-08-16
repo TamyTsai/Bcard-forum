@@ -20,7 +20,7 @@
                     <!-- ID -->
                     <span class="text-gray-600">@<%= current_user.username %></span>
                     <!-- 有卡稱 顯示卡稱，沒卡稱 就不顯示 -->
-                    <span>・<%= current_user.cardname if current_user.cardname !=nil %></span>
+                    <span><%= "・#{current_user.cardname}" if current_user.cardname !=nil %></span>
                     <p class="text-gray-400 text-sm mb-1.5"><%= @comment.created_at.strftime("%Y年%m月%d日 %I:%M") %></p>
                 </div>
             </article>
