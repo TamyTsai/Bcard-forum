@@ -1,26 +1,24 @@
-## 簡介
-- 本專案為一個論壇網站，復刻臺灣知名論壇Dcard
-- 以HTML、CSS、JavaScript及Ruby撰寫，為動態網頁
-- 設計模式（design pattern）採用MVC架構
-- 圖示部分使用Font Awesome，以方便控制大小顏色等設定
-- 使用Bulma美化頁面，並達RWD效果
-- 使用Tailwind CSS樣式設計頁面
-- 使用ES6使JavaScript語法變得簡潔（箭頭函式、以let定義變數等）
-- 追蹤、愛心、收藏等功能運用AJAX技術，提升使用者體驗
-- 使用Stimulus框架
-- 使用Rails框架製作網頁
-- 前端檔案中，CSS檔案以Asset Pipeline打包，JavaScript檔案以Webpack打包
-- 使用includes與with_attached語法，解決資料庫撈資料時的N+1問題
-- 使用Active Storage處理圖檔上傳功能，並使用image processing及libvips處理上傳後之圖檔
-- 使用Froala editor製作文章之文字編輯器
-- 使用devise套件製作會員系統功能，並客製化
-- 使用aasm（act as state machine）有限狀態機控制文章狀態
-- 使用friendly id套件，美化網址顯示，並達避免洩漏過多資訊之效果；另使用babosa套件，讓文章標題可以中文顯示在網址中
-- 使用paranoia套件，讓文章及留言之刪除功能為軟刪除
-- 使用axios串接API
-- 使用PostgreSQL資料庫儲存資料
+# Bcard論壇網站
+![image](https://github.com/user-attachments/assets/a8c1acd9-4fe0-43c1-a991-3efbc278b5e2)
 
-## 功能
+## 關於Bcard論壇網站
+- Bcard為一個論壇網站，復刻臺灣知名論壇[Dcard](https://www.dcard.tw/f)
+- 在本論壇中，你可以瀏覽會員所發佈的文章，也可以註冊成為會員，自己撰寫文章
+- 登入後，你可以自由撰寫文章，還可以收藏他人文章；為他人文章按愛心；追蹤其他使用者，也可以於文章下留言發表你的感想！
+
+<!-- ## 網站地圖（Sitemap）
+黃底表示該頁面需要登入後方可使用
+![網站地圖](https://github.com/TamyTsai/Bcard-forum/assets/97825677/48a440cb-b5e4-47bd-b6c1-51ae35170ef3) -->
+
+## 實體關聯圖（ERD）
+![實體關聯圖](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae5ff44a-ca00-4b7d-b219-5a82738a7ad2)
+
+## 如何開始
+1. 註冊帳號
+2. 設定個人資訊
+3. 歡迎使用本論壇各種功能！（撰寫文章、收藏文章、為文章按愛心、追蹤別人、文章留言）
+
+<!-- ## 功能
 - 會員功能
     - 註冊頁面
         - 輸入ID、常用信箱、密碼、確認密碼後，點擊「註冊」按鈕，即可建立新帳號
@@ -52,7 +50,7 @@
         - 無追蹤的使用者時，顯示「尚無已追蹤之使用者」
         - 有追蹤的使用者時，按照追蹤時間順序，由新至舊，顯示使用者，並提供按鈕，供取消追蹤
     - 「我的文章」頁面
-        - 尚未建立任何文章時，顯示「尚無文章，趕快來寫一篇吧!」，並提供「建立文章」按鈕，供進入建立文章頁面
+        - 尚未建立任何文章時，顯示「尚無文章，趕快來寫一篇吧！」，並提供「建立文章」按鈕，供進入建立文章頁面
         - 有建立的文章時，按照文章建立時間順序，由新至舊，顯示所有自己已建立之文章
         - 每篇文章上面顯示文章建立日期
         - 每篇文章皆提供「筆」圖示及「垃圾桶」圖示，供進入編輯文章頁面及刪除文章
@@ -116,12 +114,141 @@
     - 若該使用者無已發佈文章，顯示「該使用者目前無已發佈文章！」
     - 若該使用者有已發佈之文章，按照文章建立時間順序，由新至舊，顯示該使用者之已發佈文章
 - 成功登入、登出、文章建立成功…等事件發生時，於頁面上方出現一次性提示訊息框框，點擊右上角叉叉可關閉該提醒
-- 文章及留言設定為軟刪除，記錄刪除時間，讓文章及留言不可見
-- 於單一文章等頁面之網址文章id部分輸入不存在之文章id時，顯示頁面不存在訊息，並提供「返回首頁」按鈕
+- 文章及留言設定為軟刪除，僅記錄刪除時間，讓文章及留言不可見，而不將其由資料庫中刪除
+- 於單一文章等頁面之網址文章id部分輸入不存在之文章id時，顯示頁面不存在訊息，並提供「返回首頁」按鈕，供返回首頁（最新文章頁面）-->
+
+## 專案畫面與功能介紹
+### 首頁（最新文章）
+按文章新舊顯示文章
+
+![首頁（最新文章）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5ff1e510-d534-4409-a452-367cab7be2b2)
+
+<hr>
+
+### 熱門文章
+按文章愛心數多寡顯示文章
+
+![熱門文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/06f7729b-4c17-4e5c-b52e-47b7409ead8d)
+
+<hr>
+
+### 創作者列表
+可以看到本論壇已註冊之會員，並追蹤他們！
+
+![創作者列表（已登入）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ef7cdd60-e91d-4cab-b2a9-3c6e3eb4f143)
+
+<hr>
+
+### 創作者個人頁面
+自己或其他使用者的個人頁面，呈現這位用戶的追蹤與被追蹤人數，及發佈了哪些文章
+
+![image](https://github.com/user-attachments/assets/cb3194b1-6bb8-4b8c-a7d1-a32961beb2b2)
+![image](https://github.com/user-attachments/assets/e70d1b7e-eaaa-4700-ad6e-444a78fe5527)
+
+<hr>
+
+### 個人資訊首頁（我的收藏）
+顯示自己收藏了哪些文章（遭作者下架的文章則無法點擊觀看內文）
+
+![個人資訊首頁（我的收藏）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/949d7f37-b401-4554-8c7c-68334868f905)
+
+<hr>
+
+### 我追蹤的使用者
+顯示自己追蹤了哪些人
+
+![我追蹤的使用者](https://github.com/TamyTsai/Bcard-forum/assets/97825677/382af8fd-9242-42f1-89e0-b7a05a14df3a)
+
+<hr>
+
+### 我的文章
+顯示自己的文章列表（含未發佈及已發佈）
+
+![我的文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/0aeb04c0-9b26-41ce-afad-4d570d587de8)
+
+<hr>
+
+### 我的個人資料
+更改自己的個人資料
+
+![我的個人資料](https://github.com/TamyTsai/Bcard-forum/assets/97825677/704edd4b-90f5-49b7-866b-b48a89a1e63b)
+
+<hr>
+
+### 單一文章頁面
+- 如果為自己的文章，則可進行編輯及刪除
+- 可以對文章按愛心、收藏文章或追蹤作者
+
+![單一文章頁面](https://github.com/TamyTsai/Bcard-forum/assets/97825677/4024f215-67b4-4579-a2e3-57968215ef1e)
+
+<hr>
+
+### 單一文章頁面（留言區）
+如果為自己的留言，則可進行編輯及刪除
+
+![單一文章頁面2（留言區）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae167ba3-7384-4693-9bf8-567974205553)
+
+<hr>
+
+### 新增、編輯文章
+不只可以上傳文章封面照片，內文也可以再上傳其他圖片
+
+![新增文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/daec8556-ca62-459a-9fcc-1c1f0392a0e6)
+![編輯文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/2f93a2a6-fb1e-400a-8817-abb95f413d46)
 
 
 <!-- ## 畫面
-### 瀏覽器畫面 -->
+### 首頁（最新文章）
+![首頁（最新文章）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5ff1e510-d534-4409-a452-367cab7be2b2)
+
+### 熱門文章
+![熱門文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/06f7729b-4c17-4e5c-b52e-47b7409ead8d)
+
+### 創作者列表
+![創作者列表（已登入）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ef7cdd60-e91d-4cab-b2a9-3c6e3eb4f143)
+
+### 註冊
+![註冊](https://github.com/TamyTsai/Bcard-forum/assets/97825677/6e3aeeab-18e9-4308-b614-4581dbd162cf)
+
+### 登入
+![登入](https://github.com/TamyTsai/Bcard-forum/assets/97825677/5a1a79f8-006c-432c-9441-64c590257c59)
+
+### 忘記密碼
+![忘記密碼](https://github.com/TamyTsai/Bcard-forum/assets/97825677/f4d3baaf-fc01-4731-9913-c20e1878d1a5)
+
+### 系統訊息
+![系統訊息](https://github.com/TamyTsai/Bcard-forum/assets/97825677/86d59656-5f9f-45da-bcc4-503d1c8e7df2)
+
+### 404
+![404](https://github.com/TamyTsai/Bcard-forum/assets/97825677/a3ddd465-4eb6-4472-af7a-e87cbce05549)
+
+### 個人資訊首頁（我的收藏）
+![個人資訊首頁（我的收藏）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/949d7f37-b401-4554-8c7c-68334868f905)
+
+### 我追蹤的使用者
+![我追蹤的使用者](https://github.com/TamyTsai/Bcard-forum/assets/97825677/382af8fd-9242-42f1-89e0-b7a05a14df3a)
+
+### 我的文章
+![我的文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/0aeb04c0-9b26-41ce-afad-4d570d587de8)
+
+### 我的個人資料
+![我的個人資料](https://github.com/TamyTsai/Bcard-forum/assets/97825677/704edd4b-90f5-49b7-866b-b48a89a1e63b)
+![我的個人資料2](https://github.com/TamyTsai/Bcard-forum/assets/97825677/9b08378e-c122-4e3b-a59a-9dde520fd99c)
+
+### 單一文章頁面
+![單一文章頁面](https://github.com/TamyTsai/Bcard-forum/assets/97825677/4024f215-67b4-4579-a2e3-57968215ef1e)
+
+### 單一文章頁面（留言區）
+![單一文章頁面2（留言區）](https://github.com/TamyTsai/Bcard-forum/assets/97825677/ae167ba3-7384-4693-9bf8-567974205553)
+
+### 新增文章
+![新增文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/daec8556-ca62-459a-9fcc-1c1f0392a0e6)
+
+### 編輯文章
+![編輯文章](https://github.com/TamyTsai/Bcard-forum/assets/97825677/2f93a2a6-fb1e-400a-8817-abb95f413d46)
+
+### 編輯留言
+![編輯留言](https://github.com/TamyTsai/Bcard-forum/assets/97825677/e36926fa-e653-449a-95fa-3256fb9a0487) -->
 
 
 ## 安裝
@@ -150,14 +277,14 @@ $ rails db:create
 ```bash
 $ rails db:migrate
 ```
-### 取得專案
+<!-- ### 取得專案
 ```bash
 $ git clone https://github.com/TamyTsai/Bcard-forum.git
 ```
 ### 移動到專案內
 ```bash
 $ cd Bcard-forum
-```
+``` -->
 ### 安裝相關套件
 ```bash
 $ bundle install
@@ -172,7 +299,7 @@ $ bin/dev
 http://localhost:3000/
 ```
 
-## 主要資料夾及檔案說明
+<!-- ## 主要資料夾及檔案說明
 - app—包含應用程式的controlle、model、view、helpers、mailers、channels、和assets
 - bin—包含啟動應用程式的 rails指令碼，並且可以包含用於設定、更新、部署或執行應用程式的其他指令碼
 - config—包含應用程式路由、資料庫等的設定
@@ -192,9 +319,9 @@ http://localhost:3000/
 - .dockerignore—此檔案告訴 Docker 哪些檔案不應複製到容器中
 - .gitattributes—此檔案會定義 git 儲存庫中特定路徑的元資料。git 和其他工具可以使用此元資料來增強其行為
 - .gitignore—此檔案告訴 git 它應該忽略哪些檔案（或模式）
-- .ruby-version—此檔案包含預設的 Ruby 版本
+- .ruby-version—此檔案包含預設的 Ruby 版本 -->
 
-## 專案技術
+<!-- ## 專案技術
 - HTML
 - CSS
     - RWD
@@ -218,7 +345,42 @@ http://localhost:3000/
     - babosa v2.0.0
     - paranoia v2.6.3
     - axios v1.7.2
-- PostergreSQL v1.5.6
+- PostgreSQL v1.5.6
 - node v22.2.0
 - yarn v1.22.22
-- webpack v5.92.1
+- webpack v5.92.1 -->
+
+## 專案技術
+- 前端：HTML、Bulma、Tailwind CSS、Stimulus.js
+- 後端：Ruby on Rails
+- 資料庫：PostgreSQL
+- 版本控制：Git
+
+<!-- - 前端語言：HTML、CSS、JavaScript-->
+<!-- - 後端語言：Ruby-->
+<!-- - 佈署-->
+
+## 使用技術詳細說明
+- 以HTML、CSS、JavaScript及Ruby撰寫，為動態網頁
+- 設計模式（design pattern）採用MVC架構
+- 圖示部分使用Font Awesome，以方便控制大小顏色等設定
+- 使用Bulma及Tailwind CSS設計頁面
+- 使用ES6使JavaScript語法變得簡潔（箭頭函式、以let定義變數等）
+- 追蹤、愛心、收藏等功能運用AJAX技術，提升使用者體驗
+- 前端無複雜邏輯，故使用輕量化Stimulus框架
+- 使用Rails框架製作網頁
+- 前端檔案中，CSS檔案以Asset Pipeline打包，JavaScript檔案以Webpack打包
+- 使用includes與with_attached語法，解決資料庫撈資料時的N+1問題
+- 使用Active Storage處理圖檔上傳功能，並使用image processing及libvips處理上傳後之圖檔（libvips較ImageMagick快上10倍，且消耗的記憶體為1/10）
+- 使用Froala editor製作文章之文字編輯器
+- 使用devise套件製作會員系統功能，並客製化
+- 使用aasm（act as state machine）有限狀態機控制文章狀態，將低資料受非預期修改之機率
+- 使用friendly id套件，美化網址顯示，並達避免洩漏過多資訊之效果；另使用babosa套件，讓文章標題可以中文顯示在網址中
+- 使用paranoia套件，讓文章及留言之刪除功能為軟刪除
+- 使用axios串接API
+- 使用PostgreSQL資料庫儲存資料
+
+## 聯絡作者
+你可以透過email與我聯絡：tamy8677@gmail.com
+
+<i>最後更新：2024.7.9</i>
